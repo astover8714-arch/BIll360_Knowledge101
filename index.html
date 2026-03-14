@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bill360 Sales Playbook — Mid-Market & Enterprise Edition</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Outfit',sans-serif;background:#f0f2f5;color:#1a202c;min-height:100vh;}
+:root{--navy:#003A5C;--green:#4EB570;--pale-blue:#90CED1;--pale-green:#8FDFA3;--yellow:#F2AB50;--coral:#F6725B;--white:#fff;--light:#f8fafc;--muted:#64748b;--border:#e2e8f0;}
+
+/* HEADER */
+.header{background:var(--navy);padding:20px 32px;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-text{color:#fff;font-size:22px;font-weight:800;letter-spacing:-.3px;}
+.logo-text span{color:var(--green);}
+.header-badge{background:rgba(78,181,112,.15);border:1px solid rgba(78,181,112,.3);color:var(--pale-green);font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;letter-spacing:.06em;}
+
+/* NAV */
+.nav{background:#fff;border-bottom:2px solid var(--border);display:flex;overflow-x:auto;padding:0 24px;}
+.nav-btn{padding:15px 18px;font-size:13px;font-weight:600;color:var(--muted);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;font-family:'Outfit',sans-serif;transition:all .2s;margin-bottom:-2px;}
+.nav-btn:hover{color:var(--navy);}
+.nav-btn.active{color:var(--navy);border-bottom-color:var(--green);}
+
+/* LAYOUT */
+.content{max-width:1000px;margin:0 auto;padding:32px 24px;}
+.section{display:none;}
+.section.active{display:block;}
+.page-title{font-size:26px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.page-sub{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.6;}
+
+/* CARDS */
+.card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:16px;}
+.card-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.card-sub{font-size:12px;color:var(--muted);margin-bottom:14px;}
+
+/* TABLES */
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{background:#f1f5f9;color:var(--navy);font-weight:700;padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);}
+td{padding:10px 14px;border-bottom:1px solid #f1f5f9;color:#334155;vertical-align:top;line-height:1.5;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:#f8fafc;}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media(max-width:680px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* TAGS */
+.tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;margin:2px;}
+.tag-green{background:#dcfce7;color:#166534;}
+.tag-red{background:#fee2e2;color:#991b1b;}
+.tag-blue{background:#dbeafe;color:#1e40af;}
+.tag-amber{background:#fef3c7;color:#92400e;}
+.tag-navy{background:#e0e7ef;color:var(--navy);}
+.tag-purple{background:#ede9fe;color:#5b21b6;}
+
+/* SIGNAL CARDS */
+.signal-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+.signal-card.green{border-left:4px solid var(--green);}
+.signal-card.red{border-left:4px solid var(--coral);}
+.signal-label{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}
+.signal-label.green{color:var(--green);}
+.signal-label.red{color:var(--coral);}
+.signal-item{font-size:13px;color:#334155;padding:4px 0;border-bottom:1px solid #f8fafc;display:flex;align-items:flex-start;gap:8px;}
+.signal-item:last-child{border-bottom:none;}
+.signal-item::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.signal-card.green .signal-item::before{background:var(--green);}
+.signal-card.red .signal-item::before{background:var(--coral);}
+
+/* STAT BOXES */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
+@media(max-width:680px){.stats-row{grid-template-columns:repeat(2,1fr);}}
+.stat-box{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center;}
+.stat-num{font-size:28px;font-weight:800;color:var(--green);line-height:1;}
+.stat-label{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.4;}
+
+/* OBJECTION CARDS */
+.obj-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:12px;}
+.obj-q{font-size:13px;font-weight:700;color:var(--coral);margin-bottom:8px;display:flex;align-items:flex-start;gap:8px;}
+.obj-q::before{content:'"';font-size:20px;line-height:1;opacity:.4;flex-shrink:0;}
+.obj-a{font-size:13px;color:#334155;line-height:1.65;padding:12px 14px;background:#f8fafc;border-radius:8px;border-left:3px solid var(--green);}
+
+/* MESSAGE BOXES */
+.msg-box{background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:14px 16px;font-size:13px;color:#0369a1;line-height:1.7;font-style:italic;margin:8px 0;}
+.avoid-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:12px 14px;font-size:12px;color:#c2410c;margin:8px 0;}
+
+/* STAGE STEPS */
+.stage{display:flex;gap:16px;margin-bottom:16px;align-items:flex-start;}
+.stage-num{min-width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;}
+.stage-body{flex:1;}
+.stage-name{font-weight:700;color:var(--navy);font-size:14px;margin-bottom:4px;}
+.stage-desc{font-size:12px;color:var(--muted);margin-bottom:8px;}
+
+/* CHECKLIST */
+.checklist{list-style:none;}
+.checklist li{font-size:13px;color:#334155;padding:6px 0;border-bottom:1px solid #f8fafc;display:flex;align-items:flex-start;gap:10px;line-height:1.5;}
+.checklist li:last-child{border-bottom:none;}
+.checklist li::before{content:'☐';color:var(--muted);font-size:14px;flex-shrink:0;margin-top:1px;}
+
+/* BATTLE CARDS */
+.battle-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px;}
+.battle-header{background:var(--navy);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}
+.battle-name{font-size:15px;font-weight:700;color:#fff;}
+.battle-type{font-size:11px;color:var(--pale-blue);font-weight:600;}
+.battle-body{padding:18px 20px;}
+.battle-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;}
+@media(max-width:580px){.battle-row{grid-template-columns:1fr;}}
+.battle-col-label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;}
+.battle-col-label.red{color:var(--coral);}
+.battle-col-label.green{color:var(--green);}
+.battle-point{font-size:12px;color:#334155;padding:3px 0;display:flex;gap:6px;}
+.battle-point::before{content:'•';flex-shrink:0;}
+.battle-script{background:#f0f9ff;border-left:3px solid var(--pale-blue);padding:10px 14px;border-radius:0 6px 6px 0;font-size:12px;color:#0369a1;line-height:1.6;font-style:italic;}
+
+/* PARTNER CARDS */
+.partner-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px;}
+.partner-header{background:#1e3a5f;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}
+.partner-name{font-size:15px;font-weight:700;color:#fff;}
+.partner-role{font-size:11px;color:var(--pale-blue);}
+.partner-body{padding:18px 20px;}
+.warning-box{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:10px 14px;font-size:12px;color:#92400e;margin-top:12px;}
+
+/* PERSONA CARDS */
+.persona-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center;}
+.persona-icon{width:48px;height:48px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;margin:0 auto 10px;}
+.persona-name{font-weight:700;color:var(--navy);font-size:14px;}
+.persona-role{font-size:12px;color:var(--muted);margin-bottom:10px;}
+.persona-quote{font-size:12px;color:#334155;font-style:italic;line-height:1.5;border-top:1px solid var(--border);padding-top:10px;}
+
+/* SECTION DIVIDERS */
+.sec-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:24px 0 10px;}
+
+/* ANALOGY BOX */
+.analogy-box{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:1px solid #bae6fd;border-radius:10px;padding:16px 18px;margin-bottom:16px;}
+.analogy-label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0369a1;margin-bottom:6px;}
+.analogy-text{font-size:13px;color:#0c4a6e;line-height:1.6;}
+
+/* NARRATIVE STEPS */
+.narrative-step{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);}
+.narrative-step:last-child{border-bottom:none;}
+.narrative-num{min-width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;}
+.narrative-title{font-weight:700;color:var(--navy);font-size:13px;margin-bottom:3px;}
+.narrative-text{font-size:13px;color:#334155;line-height:1.5;font-style:italic;}
+
+  .contact-card{background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px;}
+  .contact-name{font-weight:700;font-size:13px;color:var(--navy);}
+  .contact-role{font-size:11px;color:var(--muted);margin-bottom:4px;}
+  .contact-note{font-size:12px;color:#334155;}
+  .partner-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px;}
+  .partner-header{background:#1e3a5f;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;}
+  .partner-name{font-size:14px;font-weight:700;color:#fff;}
+  .partner-role{font-size:10px;color:var(--pale);}
+  .partner-body{padding:16px 18px;}
+  .green-box{background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:10px 12px;font-size:12px;color:#14532d;margin:7px 0;}
+  .warn-box{background:#fef3c7;border:1px solid #fde68a;border-radius:8px;padding:10px 12px;font-size:12px;color:#92400e;margin:7px 0;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">
+    <svg width="36" height="36" viewBox="0 0 36 36"><rect width="36" height="36" rx="8" fill="#4EB570"/><text x="18" y="25" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="16" fill="white">B3</text></svg>
+    <div class="logo-text"><span>BILL</span>360</div>
+  </div>
+  <div style="text-align:right;">
+    <div class="header-badge">MID-MARKET &amp; ENTERPRISE EDITION</div>
+    <div style="color:rgba(255,255,255,.4);font-size:11px;margin-top:4px;">AR Automation &amp; Payments · 2025 Edition</div>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="nav-btn active" onclick="show('overview')">Overview</button>
+  <button class="nav-btn" onclick="show('icp')">ICP &amp; Personas</button>
+  <button class="nav-btn" onclick="show('outreach')">Outreach</button>
+  <button class="nav-btn" onclick="show('discovery')">Discovery</button>
+  <button class="nav-btn" onclick="show('messaging')">Messaging</button>
+  <button class="nav-btn" onclick="show('thirdparty')">3rd Parties</button>
+  <button class="nav-btn" onclick="show('competitive')">Competitive</button>
+  <button class="nav-btn" onclick="show('objections')">Objections</button>
+  <button class="nav-btn" onclick="show('demo')">Demo &amp; Close</button>
+  <button class="nav-btn" onclick="show('intel')">Gateway Intel</button>
+<button class="nav-btn" onclick="show('cadence')">12-Touch Cadence</button>
+  <button class="nav-btn" onclick="show('contacts')">3rd Party Contacts</button>
+  <button class="nav-btn" onclick="show('surcharging')">Surcharging Deep Dive</button>
+  <button class="nav-btn" onclick="show('ach101')">ACH Processing 101</button>
+  <button class="nav-btn" onclick="show('cc101')">Credit Card Processing 101</button>
+  <button class="nav-btn" onclick="show('ccb2b')">CC Processing in B2B</button>
+  <button class="nav-btn" onclick="show('erp101')">ERP Education</button>
+</div>
+
+<!-- OVERVIEW -->
+<div id="overview" class="section active content">
+  <div class="page-title">Company &amp; Product Overview</div>
+  <div class="page-sub">What Bill360 is, where it plays, and why it wins in mid-market and enterprise finance environments.</div>
+
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-num">48%</div><div class="stat-label">Max DSO reduction in 6 months</div></div>
+    <div class="stat-box"><div class="stat-num">36%</div><div class="stat-label">Avg faster payments vs. current system</div></div>
+    <div class="stat-box"><div class="stat-num">15K+</div><div class="stat-label">Users trust Bill360</div></div>
+    <div class="stat-box"><div class="stat-num">2,000</div><div class="stat-label">B2B companies interviewed before building</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">The One-Line Positioning</div>
+    <div style="font-size:16px;font-weight:700;color:var(--navy);margin:10px 0;line-height:1.5;">"Bill360 helps finance teams convert invoices into cash faster by embedding modern payment infrastructure directly into their existing ERP — no replacement, no disruption."</div>
+    <div style="font-size:13px;color:var(--muted);">Always lead with the gap, not the product. The ERP stays. Bill360 becomes the receivables execution layer that sits on top of it.</div>
+  </div>
+
+  <div class="sec-label">The Strategic Framing</div>
+  <div class="card">
+    <div class="card-title">The Receivables Gap Narrative</div>
+    <div class="card-sub">Use this structure in first conversations with finance leaders</div>
+    <div class="narrative-step">
+      <div class="narrative-num">1</div>
+      <div><div class="narrative-title">Acknowledge the ERP</div><div class="narrative-text">"Most companies your size have a solid ERP in place. It handles invoicing, accounting, and financial reporting well."</div></div>
+    </div>
+    <div class="narrative-step">
+      <div class="narrative-num">2</div>
+      <div><div class="narrative-title">Identify the Gap</div><div class="narrative-text">"Where most finance teams still have drag is what happens after the invoice leaves the ERP — payment collection, remittance matching, and cash visibility."</div></div>
+    </div>
+    <div class="narrative-step">
+      <div class="narrative-num">3</div>
+      <div><div class="narrative-title">Position Bill360</div><div class="narrative-text">"We sit in that layer. We don't touch your ERP — we connect to it. And we automate everything from payment acceptance to reconciliation back into your system."</div></div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">What Bill360 Does</div>
+      <ul class="checklist">
+        <li>Digital invoice delivery &amp; automated payment options</li>
+        <li>Embedded B2B payment acceptance (ACH, card, surcharging)</li>
+        <li>Automated reconciliation &amp; remittance matching to ERP</li>
+        <li>Customer collaboration portal (invoices, disputes, messaging)</li>
+        <li>Real-time AR visibility — DSO, aging, payment trends</li>
+        <li>Level 2/3 interchange optimization on card payments</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">What Bill360 Is NOT</div>
+      <ul class="checklist">
+        <li>Not an ERP replacement</li>
+        <li>Not an accounting system</li>
+        <li>Not a standalone payment gateway</li>
+        <li>Not a one-size-fits-all tool</li>
+      </ul>
+      <div style="margin-top:14px;padding:12px;background:#f0fdf4;border-radius:8px;border-left:3px solid var(--green);font-size:13px;color:#14532d;font-weight:600;">The ERP stays. Bill360 becomes the receivables execution layer.</div>
+    </div>
+  </div>
+
+  <div class="sec-label">Supported ERP Environments</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Mid-Market ERP</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+        <span class="tag tag-blue">NetSuite</span><span class="tag tag-blue">Acumatica</span><span class="tag tag-blue">Sage Intacct</span><span class="tag tag-blue">Sage 300</span><span class="tag tag-blue">D365 Business Central</span><span class="tag tag-blue">QuickBooks</span><span class="tag tag-blue">Xero</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Enterprise ERP</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+        <span class="tag tag-navy">D365 Finance &amp; Ops</span><span class="tag tag-navy">Oracle EBS</span><span class="tag tag-navy">Oracle Fusion Cloud</span><span class="tag tag-navy">SAP S/4HANA</span>
+      </div>
+      <div class="warning-box" style="margin-top:10px;"><strong>Sales Team Note:</strong> SAP, Oracle EBS, and JDE deals often involve a 3rd party gateway layer (SnapPay, Payfabric). Qualify for this in discovery. See "3rd Parties" tab.</div>
+    </div>
+  </div>
+
+  <div class="sec-label">Bill360 USPs</div>
+  <div class="grid-3">
+    <div class="card" style="text-align:center;"><div style="font-size:24px;margin-bottom:8px;">🏆</div><div class="card-title">Only AR Platform Built for SMB</div><div style="font-size:12px;color:var(--muted);">Purpose-built for B2B companies, not an enterprise tool scaled down</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:24px;margin-bottom:8px;">📞</div><div class="card-title">US-Based Live Support</div><div style="font-size:12px;color:var(--muted);">Real humans, real-time. Level II &amp; III AR automation experts</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:24px;margin-bottom:8px;">🏦</div><div class="card-title">Full-Risk PayFac</div><div style="font-size:12px;color:var(--muted);">Bill360 handles payment risk, compliance, and MID setup at scale</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:24px;margin-bottom:8px;">🤝</div><div class="card-title">Buyer/Seller Portal</div><div style="font-size:12px;color:var(--muted);">Collaboration, dispute resolution, invoice-level messaging</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:24px;margin-bottom:8px;">🚀</div><div class="card-title">Zero-Cost Onboarding</div><div style="font-size:12px;color:var(--muted);">Turnkey implementation with dedicated CSM guidance</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:24px;margin-bottom:8px;">🔒</div><div class="card-title">PCI DSS Compliant</div><div style="font-size:12px;color:var(--muted);">Tokenization, surcharging pre-registration, check fraud elimination</div></div>
+  </div>
+</div>
+
+<!-- ICP & PERSONAS -->
+<div id="icp" class="section content">
+  <div class="page-title">Ideal Customer Profile &amp; Personas</div>
+  <div class="page-sub">Who to target, what signals to look for, and when to walk away.</div>
+
+  <div class="sec-label">ICP Segments</div>
+  <div class="grid-2">
+    <div class="card" style="border-top:4px solid var(--green);">
+      <div class="card-title">SMB Sweet Spot</div>
+      <div class="card-sub">Direct, fast deals — single decision-maker</div>
+      <table><tr><td><strong>ERP</strong></td><td>QuickBooks or Xero</td></tr><tr><td><strong>Revenue</strong></td><td>$2M–$10M</td></tr><tr><td><strong>Invoices/mo</strong></td><td>50–500</td></tr><tr><td><strong>AR Team</strong></td><td>1–3 people</td></tr></table>
+    </div>
+    <div class="card" style="border-top:4px solid var(--pale-blue);">
+      <div class="card-title">Mid-Market Sweet Spot</div>
+      <div class="card-sub">Multi-threaded — map the buying committee</div>
+      <table><tr><td><strong>ERP</strong></td><td>NetSuite, Acumatica, Sage, D365 BC</td></tr><tr><td><strong>Revenue</strong></td><td>$10M–$150M</td></tr><tr><td><strong>Invoices/mo</strong></td><td>200–2,000+</td></tr><tr><td><strong>AR Team</strong></td><td>1–10 people</td></tr></table>
+    </div>
+  </div>
+  <div class="card" style="border-top:4px solid var(--yellow);">
+    <div class="card-title">Enterprise</div>
+    <div class="card-sub">Complex environments — lead with no-disruption, multi-stakeholder from day one</div>
+    <div class="grid-2">
+      <table><tr><td><strong>ERP</strong></td><td>SAP S/4HANA, Oracle EBS/Fusion, D365 F&amp;O</td></tr><tr><td><strong>Revenue</strong></td><td>$25M–$1B+</td></tr></table>
+      <table><tr><td><strong>Invoices/mo</strong></td><td>500+</td></tr><tr><td><strong>Structure</strong></td><td>Multi-entity / shared services</td></tr></table>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:20px;">
+    <div class="signal-card green">
+      <div class="signal-label green">🟢 Strong Fit Signals</div>
+      <div class="signal-item">QB Payments user — fund hold frustration is real</div>
+      <div class="signal-item">Net 30–60+ payment terms</div>
+      <div class="signal-item">Recent ERP migration (disrupted payment workflow)</div>
+      <div class="signal-item">New AR/Finance team hire</div>
+      <div class="signal-item">Multi-entity, franchise, or multi-location structure</div>
+      <div class="signal-item">Absorbing card fees silently — no surcharging</div>
+      <div class="signal-item">CFO or Controller driving DSO improvement</div>
+    </div>
+    <div class="signal-card red">
+      <div class="signal-label red">🔴 Disqualifiers — Walk Away Early</div>
+      <div class="signal-item">Travel vertical</div>
+      <div class="signal-item">Transportation with payment-in-advance model</div>
+      <div class="signal-item">Debt collection (not original goods/services provider)</div>
+      <div class="signal-item">B2C or POS-only model</div>
+      <div class="signal-item">Fewer than ~50 invoices/month</div>
+      <div class="signal-item">ERP not on supported list</div>
+      <div class="signal-item">Based in CT or MA — no surcharging pitch</div>
+    </div>
+  </div>
+
+  <div class="sec-label" style="margin-top:28px;">Buyer Personas</div>
+  <div class="analogy-box">
+    <div class="analogy-label">The Upstream Shift Analogy</div>
+    <div class="analogy-text">SMB is like selling to a single chef who decides the menu, buys the ingredients, and cooks the meal. Mid-market is like selling to a restaurant group — there's a GM, an executive chef, a CFO, and an ops director. Your pitch has to work for all of them at different times in different rooms. Enterprise? That's catering a stadium — logistics team, contract review process, and a 90-day implementation plan before the first plate goes out.</div>
+  </div>
+
+  <div class="grid-2">
+    <div class="persona-card">
+      <div class="persona-icon">👩‍💼</div>
+      <div class="persona-name">"Big Boss Betty"</div>
+      <div class="persona-role">CEO / Founder / Owner — Executor</div>
+      <div class="persona-quote">"I need a solution that can streamline our operations and show clear ROI without requiring a huge development or financial investment to implement."</div>
+      <div style="margin-top:10px;font-size:12px;"><span class="tag tag-green">Lead: ROI + time savings</span><span class="tag tag-green">Low disruption</span></div>
+    </div>
+    <div class="persona-card">
+      <div class="persona-icon">💼</div>
+      <div class="persona-name">"Financial Fred"</div>
+      <div class="persona-role">CFO / Controller — Influencer</div>
+      <div class="persona-quote">"Every dollar counts. I need a solution that not only promises cost savings but can show a clear, measurable impact to our bottom line."</div>
+      <div style="margin-top:10px;font-size:12px;"><span class="tag tag-blue">Lead: DSO math</span><span class="tag tag-blue">Card fee costs</span></div>
+    </div>
+    <div class="persona-card">
+      <div class="persona-icon">📋</div>
+      <div class="persona-name">"Manager Mary"</div>
+      <div class="persona-role">AR / Ops Manager — Influencer</div>
+      <div class="persona-quote">"I'm constantly looking for ways to make us more productive. Give me a solution our team can quickly adopt and will make our day-to-day easier."</div>
+      <div style="margin-top:10px;font-size:12px;"><span class="tag tag-amber">Lead: Automation</span><span class="tag tag-amber">Easy adoption</span></div>
+    </div>
+    <div class="persona-card">
+      <div class="persona-icon">🖥️</div>
+      <div class="persona-name">IT / Systems Admin</div>
+      <div class="persona-role">Integration Gatekeeper — mid-market veto</div>
+      <div class="persona-quote">"What's the integration scope? What security standards does it meet? How much of our IT team's time will this require?"</div>
+      <div style="margin-top:10px;font-size:12px;"><span class="tag tag-purple">Lead: No ERP touch</span><span class="tag tag-purple">PCI / SOC 2</span></div>
+    </div>
+  </div>
+
+  <div class="sec-label">Best-Fit Industries</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;">
+    <span class="tag tag-navy">Wholesale / Distribution</span><span class="tag tag-navy">Manufacturing</span><span class="tag tag-navy">Business Services</span><span class="tag tag-navy">Staffing / Workforce</span><span class="tag tag-navy">Construction / Field Services</span><span class="tag tag-navy">Healthcare B2B</span><span class="tag tag-navy">Technology / SaaS (B2B)</span><span class="tag tag-navy">Logistics &amp; Supply Chain</span><span class="tag tag-navy">Franchise</span><span class="tag tag-navy">Shared Services</span>
+  </div>
+</div>
+
+<!-- OUTREACH -->
+<div id="outreach" class="section content">
+  <div class="page-title">Cold Outreach Sequences</div>
+  <div class="page-sub">Lead with their world, not your product. One pain point per message. One CTA per message.</div>
+
+  <div class="card" style="border-left:4px solid var(--coral);">
+    <div class="card-title" style="color:var(--coral);">Rule #1</div>
+    <div style="font-size:15px;font-weight:600;color:var(--navy);margin:8px 0;">The first sentence in any outreach must never include "Bill360" or "our platform."</div>
+    <div style="font-size:13px;color:var(--muted);">Lead with the problem, an industry observation, or a signal from their company. Introduce Bill360 only after the pain is established.</div>
+  </div>
+
+  <div class="sec-label">LinkedIn Identity + Belonging Method</div>
+  <div class="analogy-box">
+    <div class="analogy-label">Why This Works</div>
+    <div class="analogy-text">AR and finance professionals strongly identify with their function. When they feel you're one of them — operating in the same professional world — acceptance rates jump significantly. The key is signaling shared identity and belonging without triggering sales pattern recognition.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">LinkedIn Connection Note (≤300 chars)</div>
+    <div class="msg-box">Hi [Name], connecting with peers in accounts receivable and the invoice-to-cash space is always a highlight. Thought I'd reach out.</div>
+    <div class="avoid-box">❌ Never say: "I help companies automate AR" / "We work with finance teams" / "Would love to learn more about your business" — these trigger sales pattern recognition immediately.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">LinkedIn DM (post-connect) — Observation → Implication → Idea → One Question</div>
+    <div class="msg-box">Hey [Name], great to connect. Always good meeting others working in accounts receivable and invoice-to-cash.<br><br>[Observation from Pain Library below]. [Implication line].<br><br>[Idea line tied to their ERP, if known]. Worth a quick conversation to compare notes on how you're approaching it?</div>
+  </div>
+
+  <div class="sec-label">Pain Library — Personalization Engine</div>
+  <div class="card">
+    <div class="card-sub">Pick one pain signal. Use the Observation in the opening. Use the Implication in the follow-up.</div>
+    <table>
+      <tr><th>Pain</th><th>Observation Line</th><th>Implication Line</th></tr>
+      <tr><td><span class="tag tag-red">QB Fund Holds</span></td><td>QB sitting on collected funds with no resolution path keeps coming up in B2B AR conversations</td><td>DSO stretches in a way that's hard to explain when collections looked like it was working</td></tr>
+      <tr><td><span class="tag tag-amber">Manual Collections</span></td><td>AR follow-up at most B2B companies is still largely manual — reminders, chasing, aging</td><td>That workload grows with volume in a way headcount alone doesn't solve</td></tr>
+      <tr><td><span class="tag tag-blue">Cash App / Recon</span></td><td>Payments across ACH, card, wire, check with inconsistent remittance data</td><td>Matching them back manually quietly consumes AR bandwidth without showing up as a discrete problem</td></tr>
+      <tr><td><span class="tag tag-amber">Card Fees</span></td><td>Most B2B setups absorb card costs at standard rates without questioning it</td><td>For companies with meaningful B2B card volume, that margin is likely recoverable</td></tr>
+      <tr><td><span class="tag tag-purple">No Visibility</span></td><td>Most AR teams don't have a real-time view into DSO or aging until it's already a problem</td><td>By then collections is reactive rather than measurable</td></tr>
+      <tr><td><span class="tag tag-red">Invoice Disputes</span></td><td>Disputes tend to live in email chains longer than they should</td><td>Every dispute in email is a payment delayed by the length of that thread</td></tr>
+    </table>
+  </div>
+
+  <div class="sec-label">5-Touch Cold Email Sequence</div>
+  <div class="stage"><div class="stage-num">1</div><div class="stage-body"><div class="stage-name">Email 1 — Day 1: Observation Only</div><div class="stage-desc">Subject: [Company] — AR question</div><div class="msg-box">Hi [Name],<br><br>[Observation tied to their pain — pick one from the pain library above].<br><br>For companies running [ERP] with [invoice volume], that spread between invoice sent and cash in the bank tends to quietly grow over time.<br><br>Worth a 15-minute conversation to compare notes?<br><br>[Signature]</div></div></div>
+  <div class="stage"><div class="stage-num">2</div><div class="stage-body"><div class="stage-name">Email 2 — Day 4: Add the Implication</div><div class="msg-box">Hi [Name],<br><br>Following up on my note. [Implication line from pain library] — most [CFO / AR Manager / Controller] I talk to don't flag it until it shows up in DSO.<br><br>Happy to walk through how we approach it. 15 minutes?<br><br>[Signature]</div></div></div>
+  <div class="stage"><div class="stage-num">3</div><div class="stage-body"><div class="stage-name">Email 3 — Day 8: Social Proof</div><div class="stage-desc">Subject: 48% DSO reduction — relevant?</div><div class="msg-box">Hi [Name],<br><br>Companies using Bill360 have reduced DSO by up to 48% within 6 months of going live.<br><br>The biggest driver isn't the automation itself — it's eliminating the manual layer between invoice and payment.<br><br>Would it be useful to see how that maps to [Company]?<br><br>[Signature]</div></div></div>
+  <div class="stage"><div class="stage-num">4</div><div class="stage-body"><div class="stage-name">Email 4 — Day 14: Different Angle (Card Fees / L2L3)</div><div class="msg-box">Hi [Name],<br><br>One thing that doesn't come up until someone points it out: most B2B setups process credit cards at standard interchange rates and absorb the full cost quietly. Level 2/L3 optimization and compliant surcharging can recover a meaningful portion of that.<br><br>Curious how [Company] handles the cost side of card acceptance on B2B invoices.<br><br>[Signature]</div></div></div>
+  <div class="stage"><div class="stage-num">5</div><div class="stage-body"><div class="stage-name">Email 5 — Day 21: Breakup</div><div class="stage-desc">Subject: Closing the loop</div><div class="msg-box">Hi [Name],<br><br>I'll stop reaching out after this one. If the timing isn't right, that's completely fine.<br><br>If AR automation, B2B payments, or DSO reduction ever comes back up — I'm easy to find.<br><br>Wishing [Company] continued growth.<br><br>[Signature]</div></div></div>
+</div>
+
+<!-- DISCOVERY -->
+<div id="discovery" class="section content">
+  <div class="page-title">Discovery Framework</div>
+  <div class="page-sub">Qualify hard. The right questions surface the real pain — and expose whether there's a deal. Find the gateway early — not on demo day.</div>
+
+  <div class="card" style="border-left:4px solid var(--green);">
+    <div class="card-title">Opening Frame (first 60 seconds)</div>
+    <div class="msg-box">"Thanks for making time. I want to make sure this is a good use of yours — I'll ask a few questions to understand how your AR process works today, and if it seems like there's a real fit, I'll show you what that typically looks like with us. Does that work?"</div>
+  </div>
+
+  <div class="sec-label">Pre-Call Checklist</div>
+  <div class="card">
+    <ul class="checklist">
+      <li>ERP confirmed — is a gateway layer likely? (SAP/Oracle/JDE = high probability → see 3rd Parties tab)</li>
+      <li>Multi-entity or franchise signals?</li>
+      <li>Persona identified; buying committee mapped</li>
+      <li>Pain hypothesis formed (at least 1 from pain library)</li>
+      <li>Incumbent known — Billtrust? Versapay? Invoiced? Manual process?</li>
+      <li>Recent hiring signals or ERP migration?</li>
+    </ul>
+  </div>
+
+  <div class="sec-label">Core Discovery Questions</div>
+  <div class="card">
+    <table>
+      <tr><th>Category</th><th>Question</th><th>Qualifies</th></tr>
+      <tr><td><span class="tag tag-navy">Process</span></td><td>"Walk me through how an invoice gets from sent to cash in your account today."</td><td>Full workflow map</td></tr>
+      <tr><td><span class="tag tag-navy">Pain</span></td><td>"Where does the process slow down most often?"</td><td>Primary pain</td></tr>
+      <tr><td><span class="tag tag-blue">ERP</span></td><td>"Do payments reconcile automatically inside [ERP], or is that still manual work?"</td><td>Integration gap</td></tr>
+      <tr><td><span class="tag tag-red" style="font-weight:800;">Gateway ⚠️</span></td><td>"Do you use any payment gateway or middleware today — SnapPay, Payfabric, or similar?"</td><td><strong>3rd party in play</strong></td></tr>
+      <tr><td><span class="tag tag-green">DSO</span></td><td>"What's your current average DSO? Where would you want it to be?"</td><td>ROI anchor</td></tr>
+      <tr><td><span class="tag tag-amber">Card Fees</span></td><td>"Are you absorbing card processing fees, or passing any of that through to customers?"</td><td>Surcharging/L2L3 open</td></tr>
+      <tr><td><span class="tag tag-amber">Volume</span></td><td>"How many invoices are you processing per month? Is that growing?"</td><td>Volume fit / urgency</td></tr>
+      <tr><td><span class="tag tag-blue">Scale</span></td><td>"How many people touch your AR process today? What's the biggest manual bottleneck?"</td><td>Headcount → automation ROI</td></tr>
+      <tr><td><span class="tag tag-purple">Committee</span></td><td>"Who else would be involved in evaluating something like this?"</td><td>Buying map</td></tr>
+      <tr><td><span class="tag tag-purple">Timing</span></td><td>"Is there a reason to move on this in the next 90 days?"</td><td>Timeline &amp; budget cycle</td></tr>
+      <tr><td><span class="tag tag-navy">Criteria</span></td><td>"What would need to be true for you to move forward with something like this?"</td><td>Surfaces hidden blockers</td></tr>
+    </table>
+  </div>
+
+  <div class="grid-2" style="margin-top:16px;">
+    <div class="signal-card green">
+      <div class="signal-label green">🟢 You Have a Deal When...</div>
+      <div class="signal-item">On a supported ERP</div>
+      <div class="signal-item">Manual reconciliation is real pain</div>
+      <div class="signal-item">DSO improvement is stated priority</div>
+      <div class="signal-item">CFO or Controller is in the room</div>
+      <div class="signal-item">Budget exists or is justifiable</div>
+      <div class="signal-item">200+ invoices/month</div>
+    </div>
+    <div class="signal-card red">
+      <div class="signal-label red">🔴 Pump the Brakes When...</div>
+      <div class="signal-item">ERP is not on supported list</div>
+      <div class="signal-item">No stated pain around collections or reconciliation</div>
+      <div class="signal-item">Decision maker not accessible</div>
+      <div class="signal-item">No budget authority or near-term timeline</div>
+      <div class="signal-item">"We're happy with how things work today"</div>
+    </div>
+  </div>
+</div>
+
+<!-- MESSAGING -->
+<div id="messaging" class="section content">
+  <div class="page-title">Value Proposition &amp; Messaging</div>
+  <div class="page-sub">What to say, to whom, and how to differentiate cleanly. Lead with the gap, not the feature set.</div>
+
+  <div class="sec-label">Persona-Tailored Messaging</div>
+  <div class="card">
+    <table>
+      <tr><th>Persona</th><th>Lead Message</th></tr>
+      <tr><td><strong>CFO / VP Finance</strong></td><td>Accelerate cash flow. Reduce DSO. Lower the cost of card acceptance through surcharging. Real-time visibility into what's paid and what's not — without replacing your ERP.</td></tr>
+      <tr><td><strong>Controller</strong></td><td>Payments reconcile automatically back into [ERP] the moment they're received. No manual matching. Cleaner data. Faster month-end close.</td></tr>
+      <tr><td><strong>AR Director / Shared Services</strong></td><td>Automated reminders. Digital payment portal. Dispute collaboration tools. Your team focuses on escalations — not chasing.</td></tr>
+      <tr><td><strong>IT / Systems Admin</strong></td><td>We don't touch your ERP. PCI DSS compliant, tokenized, SOC 2. Well-defined integration — no open-ended IT project for your team.</td></tr>
+    </table>
+  </div>
+
+  <div class="sec-label">Key Differentiators</div>
+  <div class="grid-2">
+    <div class="card"><div class="card-title">vs. ERP Replacement</div><div style="font-size:13px;color:#334155;">We don't displace the ERP — we extend it. No rip-and-replace. Faster time to value, lower risk, zero disruption to finance operations.</div></div>
+    <div class="card"><div class="card-title">vs. Payment Processors</div><div style="font-size:13px;color:#334155;">Processors handle the transaction. We handle the entire receivables cycle — delivery, collection, reconciliation, and visibility. Different category entirely.</div></div>
+    <div class="card"><div class="card-title">vs. Standalone AR Tools</div><div style="font-size:13px;color:#334155;">Unlike point solutions, Bill360 connects payment execution directly to ERP reconciliation. End-to-end, not just one piece of the puzzle.</div></div>
+    <div class="card"><div class="card-title">vs. Building In-House</div><div style="font-size:13px;color:#334155;">Enterprise teams that build this layer inside their ERP spend months and still end up with partial automation. We're purpose-built and deploy faster. Their IT time costs more than we do.</div></div>
+  </div>
+
+  <div class="sec-label">ROI Proof Points</div>
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-num" style="font-size:22px;">48%</div><div class="stat-label">Max DSO reduction in 6 months</div></div>
+    <div class="stat-box"><div class="stat-num" style="font-size:22px;">88%</div><div class="stat-label">Faster invoice payments (WiT Group)</div></div>
+    <div class="stat-box"><div class="stat-num" style="font-size:22px;">30%</div><div class="stat-label">Processing cost reduction (WiT Group)</div></div>
+    <div class="stat-box"><div class="stat-num" style="font-size:22px;">3%</div><div class="stat-label">Card revenue recovery via surcharging</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">CFO ROI Math Template</div>
+    <div class="card-sub">Use their numbers. This is the before/after Bill360 story.</div>
+    <div style="background:#f0fdf4;border-radius:8px;padding:16px;font-size:13px;color:#14532d;line-height:1.8;">
+      <strong>DSO Improvement:</strong> Cutting DSO from 45 to 30 days on $5M in AR = ~$208K in freed working capital<br>
+      <strong>Card Fee Recovery:</strong> $500K/month card volume × 2% avg fee = $10K/month absorbed → surcharging recovers up to 3%<br>
+      <strong>ACH vs. Card:</strong> $25,000 invoice via ACH = $9.69 flat vs. $500 at 2% card rate<br>
+      <strong>AR Team Hours:</strong> If team spends 20 hrs/week on manual follow-up × $25/hr = $26K/year in labor eliminated
+    </div>
+  </div>
+</div>
+
+<!-- 3RD PARTIES -->
+<div id="thirdparty" class="section content">
+  <div class="page-title">Know Your 3rd Parties</div>
+  <div class="page-sub">When a gateway or middleware partner is in the deal, know who you're sitting across from before the call starts.</div>
+
+  <div class="analogy-box">
+    <div class="analogy-label">The Restaurant Analogy</div>
+    <div class="analogy-text">Bill360 is the restaurant. The ERP (NetSuite, SAP, etc.) is the kitchen. A gateway like SnapPay or Payfabric is the expediter window — the piece that moves the order from the kitchen to the table. You can have a great kitchen and a great dining room, but the expediter window still has to work right. Know what role it plays before you walk in the door.</div>
+  </div>
+
+  <div class="partner-card">
+    <div class="partner-header">
+      <div><div class="partner-name">SnapPay (Fiserv)</div><div class="partner-role">Middleware / Payment Router</div></div>
+      <span class="tag tag-blue">SAP · Oracle EBS · NetSuite</span>
+    </div>
+    <div class="partner-body">
+      <div class="grid-2">
+        <div>
+          <div class="sec-label">What SnapPay Does</div>
+          <div style="font-size:13px;color:#334155;line-height:1.7;">Sits between the ERP and Bill360/Fiserv, acting as a router that directs credit cards to one gateway and ACH to another. Handles tokenization and authorization calls. Bill360 functions as the merchant processor on the back end.</div>
+          <div style="margin-top:12px;"><div class="sec-label">ERP Integrations</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;"><span class="tag tag-navy">SAP</span><span class="tag tag-navy">Oracle EBS</span><span class="tag tag-navy">NetSuite</span><span class="tag tag-amber">D365 (In Progress)</span><span class="tag tag-amber">Workday (In Progress)</span></div>
+          </div>
+          <div style="margin-top:10px;font-size:12px;color:var(--muted);"><strong>Surcharging available on:</strong> SAP, Oracle EBS, NetSuite only</div>
+        </div>
+        <div>
+          <div class="sec-label">When SnapPay Is In the Deal — Say This:</div>
+          <div class="msg-box">"SnapPay handles the routing and tokenization layer between your ERP and the processor. Bill360 sits downstream as the payment processor and AR automation platform. They're complementary — SnapPay moves the transaction, Bill360 closes the loop with reconciliation, collections workflow, and the customer payment experience."</div>
+          <div class="warning-box">⚠️ SnapPay also has its own invoicing portal and surcharging program. Be ready for prospects to ask how that overlaps. Keep positioning clean: SnapPay = routing/middleware, Bill360 = AR automation + payment execution layer.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="partner-card">
+    <div class="partner-header">
+      <div><div class="partner-name">Payfabric (Nodus / EVO B2B)</div><div class="partner-role">Payment Gateway / Token Vault</div></div>
+      <span class="tag tag-blue">NetSuite · Dynamics · Acumatica</span>
+    </div>
+    <div class="partner-body">
+      <div class="grid-2">
+        <div>
+          <div class="sec-label">What Payfabric Does</div>
+          <div style="font-size:13px;color:#334155;line-height:1.7;">Hosted payment gateway and token vault. Handles secure payment page hosting, tokenization, and card-on-file storage. Often surfaces when a prospect already has a payment page embedded in their ERP.</div>
+          <div style="margin-top:12px;"><div class="sec-label">What Payfabric Does NOT Do</div>
+            <ul style="list-style:disc;padding-left:18px;font-size:12px;color:var(--coral);line-height:1.8;"><li>Collections automation or automated reminders</li><li>DSO analytics or AR reporting</li><li>Buyer/seller collaboration</li><li>Full AR workflow automation</li></ul>
+          </div>
+        </div>
+        <div>
+          <div class="sec-label">When Payfabric Is In the Deal — Say This:</div>
+          <div class="msg-box">"Payfabric handles the secure payment page and token storage — it's a gateway. Bill360 is the full AR automation layer: automated reminders, digital invoice delivery, collections workflows, reconciliation back to your ERP, and real-time visibility. Think of Payfabric as the vault, and Bill360 as the entire cash flow operation around it."</div>
+          <div class="warning-box">⚠️ Validate integration compatibility with solutions or partnerships team before using in the field. Confirm correct positioning before every demo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label">Pre-Demo 3rd Party Checklist</div>
+  <div class="card">
+    <ul class="checklist">
+      <li>Asked prospect in discovery: "Do you currently use any payment gateway or middleware?"</li>
+      <li>If yes — identified the partner (SnapPay, Payfabric, or other)</li>
+      <li>Reviewed the partner profile card above</li>
+      <li>Confirmed with manager or solutions team if integration is complex or uncertain</li>
+      <li>Know the clean positioning: Bill360's role vs. the gateway's role</li>
+      <li>If gateway rep will be on the call — briefed them on "who covers what" before showtime, not during it</li>
+    </ul>
+  </div>
+</div>
+
+<!-- COMPETITIVE -->
+<div id="competitive" class="section content">
+  <div class="page-title">Competitive Battle Cards</div>
+  <div class="page-sub">Don't lead with competitive comparisons — it sounds defensive. Let the prospect name the competitor, then use these cards to navigate. Your job: make the reason to choose Bill360 undeniable.</div>
+
+  <div class="analogy-box">
+    <div class="analogy-label">How to Use These Cards</div>
+    <div class="analogy-text">Know the other team's starting lineup before the game — not to copy them, but to know where the gaps are. "We do X differently, and here's why it matters for you" lands better than "they can't do X."</div>
+  </div>
+
+  <div class="battle-card">
+    <div class="battle-header"><div><div class="battle-name">Billtrust</div><div class="battle-type">Enterprise AR Automation — Incumbent in large deals</div></div><span class="tag tag-amber">Mid-market entry point</span></div>
+    <div class="battle-body">
+      <div class="battle-row">
+        <div><div class="battle-col-label red">Their Strengths</div><div class="battle-point">Strong enterprise brand / credibility</div><div class="battle-point">Full order-to-cash suite</div><div class="battle-point">Large customer base / social proof</div><div class="battle-point">Credit management module</div></div>
+        <div><div class="battle-col-label green">Where Bill360 Wins</div><div class="battle-point">Faster time-to-value (simpler implementation)</div><div class="battle-point">Embedded PayFac — no 3rd party processor</div><div class="battle-point">Mid-market pricing and flexibility</div><div class="battle-point">ACH-first architecture — lower transaction costs</div></div>
+      </div>
+      <div class="sec-label">Script When Billtrust Is Named</div>
+      <div class="battle-script">"Billtrust is built for companies that have 6–12 months to implement and a dedicated IT team managing the rollout. Bill360 is purpose-built for mid-market — same core automation, faster deployment, and a payments model designed around ACH efficiency, not card-first economics."</div>
+    </div>
+  </div>
+
+  <div class="battle-card">
+    <div class="battle-header"><div><div class="battle-name">Versapay</div><div class="battle-type">Collaborative AR — Network-based model</div></div><span class="tag tag-amber">Distribution vertical strength</span></div>
+    <div class="battle-body">
+      <div class="battle-row">
+        <div><div class="battle-col-label red">Their Strengths</div><div class="battle-point">Buyer-supplier network effect</div><div class="battle-point">Collaborative AR / dispute resolution</div><div class="battle-point">Strong ERP integrations</div><div class="battle-point">Good brand in distribution vertical</div></div>
+        <div><div class="battle-col-label green">Where Bill360 Wins</div><div class="battle-point">No dependency on buyer network adoption</div><div class="battle-point">Works for any buyer, not just network members</div><div class="battle-point">Embedded payments + PayFac structure</div><div class="battle-point">Faster implementation for standalone AR</div></div>
+      </div>
+      <div class="sec-label">Script When Versapay Is Named</div>
+      <div class="battle-script">"Versapay's network model only delivers full value if your customers adopt the buyer portal — which requires their buy-in, not just yours. Bill360 doesn't require your customers to change their behavior. You set it up, and it works for every invoice you send, regardless of whether your customer has heard of us."</div>
+    </div>
+  </div>
+
+  <div class="battle-card">
+    <div class="battle-header"><div><div class="battle-name">Invoiced / Flywire</div><div class="battle-type">SMB/Mid-Market AR — Direct competitor</div></div><span class="tag tag-amber">QBO strength</span></div>
+    <div class="battle-body">
+      <div class="battle-row">
+        <div><div class="battle-col-label red">Their Strengths</div><div class="battle-point">Clean, modern UI</div><div class="battle-point">Strong autopay and payment portal features</div><div class="battle-point">Good QuickBooks integration</div><div class="battle-point">Backed by Flywire (education/healthcare)</div></div>
+        <div><div class="battle-col-label green">Where Bill360 Wins</div><div class="battle-point">Embedded PayFac — no 3rd party processor</div><div class="battle-point">$9.69 flat ACH fee (vs. % on large invoices)</div><div class="battle-point">Surcharging compliance program</div><div class="battle-point">Multi-entity / franchise / MID structure support</div></div>
+      </div>
+      <div class="sec-label">Script When Invoiced Is Named</div>
+      <div class="battle-script">"Invoiced is a solid AR tool, especially for QBO shops. Where we differ is the payments infrastructure underneath. Bill360 is a full-stack PayFac — we own the processing, which means we control the pricing model, the ACH economics, and the surcharging compliance. If your transaction volume is significant, that difference shows up fast in your cost of accepting payments."</div>
+    </div>
+  </div>
+
+  <div class="battle-card">
+    <div class="battle-header"><div><div class="battle-name">Nodus / EVO B2B — PayFabric</div><div class="battle-type">Payment Gateway / Token Vault — Not an AR platform</div></div><span class="tag tag-blue">Often in NetSuite / Dynamics deals</span></div>
+    <div class="battle-body">
+      <div class="battle-row">
+        <div><div class="battle-col-label red">Their Role</div><div class="battle-point">Payment gateway + token vault</div><div class="battle-point">Secure payment page hosting</div><div class="battle-point">Card-on-file storage and tokenization</div><div class="battle-point">No AR automation, no reminders, no DSO analytics</div></div>
+        <div><div class="battle-col-label green">Where Bill360 Wins</div><div class="battle-point">Full AR automation layer on top of/alongside gateway</div><div class="battle-point">Automated reminders + collections workflow</div><div class="battle-point">Real-time DSO analytics and reporting</div><div class="battle-point">Buyer/seller collaboration portal</div></div>
+      </div>
+      <div class="sec-label">Script When Payfabric Is Named</div>
+      <div class="battle-script">"PayFabric handles the secure payment page and token storage — it's a gateway. Bill360 is the full AR automation layer: automated reminders, digital invoice delivery, collections workflows, reconciliation back to your ERP, and real-time visibility. Think of PayFabric as the vault, and Bill360 as the entire cash flow operation around it."</div>
+    </div>
+  </div>
+
+  <div class="battle-card">
+    <div class="battle-header"><div><div class="battle-name">Status Quo / Doing Nothing</div><div class="battle-type">Most common "competitor" — hardest to displace</div></div><span class="tag tag-red">Quantify cost of inaction</span></div>
+    <div class="battle-body">
+      <div class="battle-row">
+        <div><div class="battle-col-label red">Why They Stay</div><div class="battle-point">Don't know the fully-loaded cost of manual AR</div><div class="battle-point">Fear of disrupting ERP environment</div><div class="battle-point">IT bandwidth concerns</div><div class="battle-point">No internal champion pushing for change</div></div>
+        <div><div class="battle-col-label green">How to Win</div><div class="battle-point">Quantify cost of inaction with their numbers</div><div class="battle-point">Card fee volume × transactions = real dollars</div><div class="battle-point">DSO × daily revenue = cash sitting on the table</div><div class="battle-point">Lead with no-ERP-disruption message — removes biggest objection preemptively</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OBJECTIONS -->
+<div id="objections" class="section content">
+  <div class="page-title">Objection Handling</div>
+  <div class="page-sub">Common objections and how to flip them. Use the Acknowledge → Reframe → Confirm framework.</div>
+
+  <div class="card" style="border-left:4px solid var(--navy);">
+    <div class="card-title">The Framework: Acknowledge → Reframe → Confirm</div>
+    <div class="grid-3" style="margin-top:10px;">
+      <div style="text-align:center;padding:12px;background:#f1f5f9;border-radius:8px;"><div style="font-size:20px;margin-bottom:6px;">👂</div><div style="font-weight:700;font-size:13px;color:var(--navy);">1. Acknowledge</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">"I hear you — [reflect their concern]"</div></div>
+      <div style="text-align:center;padding:12px;background:#f1f5f9;border-radius:8px;"><div style="font-size:20px;margin-bottom:6px;">🔄</div><div style="font-weight:700;font-size:13px;color:var(--navy);">2. Reframe</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">"Here's a different way to look at it..."</div></div>
+      <div style="text-align:center;padding:12px;background:#f1f5f9;border-radius:8px;"><div style="font-size:20px;margin-bottom:6px;">✅</div><div style="font-weight:700;font-size:13px;color:var(--navy);">3. Confirm</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">"Does that change how you're thinking about it?"</div></div>
+    </div>
+  </div>
+
+  <div class="obj-card"><div class="obj-q">"We're happy with what we have."</div><div class="obj-a">Totally fair — most of our customers said the same thing. What we usually find is the process works, but at a cost nobody has added up. How much time is your AR team spending on payment matching every month? Most finance leaders are surprised when they calculate it.</div></div>
+  <div class="obj-card"><div class="obj-q">"We don't want to touch our ERP."</div><div class="obj-a">That's exactly our model — we don't touch the ERP. We connect to it. Your ERP stays as the system of record. We sit in the layer between your ERP and your customers, handling everything from payment delivery to reconciliation back into the system. No disruption.</div></div>
+  <div class="obj-card"><div class="obj-q">"We use QuickBooks Payments — that handles it."</div><div class="obj-a">QB Payments works fine for simple cases — but we hear a lot about fund holds, limited B2B payment options, and lack of AR automation. Bill360 plugs directly into QuickBooks and handles everything QB Payments doesn't. Worth seeing the difference side by side.</div></div>
+  <div class="obj-card"><div class="obj-q">"It's too expensive."</div><div class="obj-a">Let me show you what the math looks like. If we reduce your DSO by even 15–20 days on [X invoice volume], that's [Y dollars] in accelerated cash. Card fee savings compound on top. Most clients see the platform pay for itself within the first few months. Want me to run that for your numbers?</div></div>
+  <div class="obj-card"><div class="obj-q">"We already have a gateway."</div><div class="obj-a">That actually works in our favor — Bill360 can work alongside or on top of most gateways. The gateway moves the transaction; we automate the entire AR cycle around it. Not a blocker at all — and the positioning stays clean.</div></div>
+  <div class="obj-card"><div class="obj-q">"We're evaluating Billtrust / Versapay / Invoiced."</div><div class="obj-a">That's smart — you should. What I'd encourage you to pressure-test is whether the other options actually close the reconciliation loop back into your ERP, or if they're primarily payment portals. That's where most solutions fall short, and it's where the real operational drag lives.</div></div>
+  <div class="obj-card"><div class="obj-q">"Our customers won't pay a surcharge."</div><div class="obj-a">That comes up a lot. In B2B, most commercial customers are indifferent to a small surcharge on card — especially when ACH is offered as a no-fee alternative. There's typically about a 40% drop in card volume when surcharging goes live, which is actually a win: you stop absorbing the fee entirely, and most customers don't push back.</div></div>
+  <div class="obj-card"><div class="obj-q">"IT needs to be involved and they're backed up."</div><div class="obj-a">Makes sense. We work directly with IT teams on ERP integration — it's a well-defined process and doesn't require a heavy lift on their end. Would it help to have our technical team talk to yours directly? We can scope the integration effort in one conversation.</div></div>
+  <div class="obj-card"><div class="obj-q">"We built something internally."</div><div class="obj-a">How's that going? Most teams that build internally end up with partial automation — they solve one piece but not the full cycle. We're purpose-built for this, and we maintain the platform as payment rails, surcharging regulations, and ERP versions evolve. That's a heavy ongoing cost to build and maintain internally.</div></div>
+  <div class="obj-card"><div class="obj-q">"Bad timing / not ready right now."</div><div class="obj-a">Understood — what would need to change for timing to be right? Is it budget cycle, IT bandwidth, or something else? I'd rather understand the real blocker than follow up blindly. And implementation is lighter than most expect — the ROI tends to show up quickly once we're live.</div></div>
+</div>
+
+<!-- DEMO & CLOSE -->
+<div id="demo" class="section content">
+  <div class="page-title">Demo &amp; Closing Guide</div>
+  <div class="page-sub">Lead with their pain. Show the gap. Position Bill360 as the layer that closes it. Close with confidence.</div>
+
+  <div class="sec-label">Pre-Demo Checklist</div>
+  <div class="card">
+    <ul class="checklist">
+      <li>Who is in the room? (CFO / Controller / AR Director / IT?) — know your audience before you start</li>
+      <li>ERP confirmed — reference by name during the reconciliation section</li>
+      <li>Gateway partner in deal? Coordinate "who covers what" before the call, not during it</li>
+      <li>Discovery recap ready — open by reflecting back exactly what they told you</li>
+      <li>Trial close questions prepared for each stage of the demo</li>
+      <li>Confirmed next step already drafted in your mind — never leave without one</li>
+    </ul>
+  </div>
+
+  <div class="sec-label">Enterprise Demo Flow (~35–45 min)</div>
+  <div class="stage"><div class="stage-num">1</div><div class="stage-body"><div class="stage-name">Recap &amp; Frame the Gap — 5 min</div><div class="stage-desc">Repeat back discovery findings. Introduce "receivables execution layer" concept — not the product yet.</div><div class="msg-box">"You mentioned payments are still being matched manually, and you don't have real-time visibility into what's collected. That's exactly the gap we're going to walk through today."</div></div></div>
+  <div class="stage"><div class="stage-num">2</div><div class="stage-body"><div class="stage-name">Invoice Delivery &amp; Automation — 8 min</div><div class="stage-desc">Digital invoice delivery, automated reminders, customer payment portal. <strong>AR Director moment.</strong></div><div style="font-size:12px;color:var(--muted);margin-top:4px;">Connect to AR Director pain: "this replaces the manual follow-up your team is doing today."</div></div></div>
+  <div class="stage"><div class="stage-num">3</div><div class="stage-body"><div class="stage-name">Payment Acceptance &amp; Surcharging — 8 min</div><div class="stage-desc">ACH, card, surcharging. <strong>CFO moment: quantify the cost savings from surcharging vs. absorbing fees.</strong></div><div style="font-size:12px;color:var(--muted);margin-top:4px;">Keep the compliance angle visible — it's a risk reduction story too.</div></div></div>
+  <div class="stage"><div class="stage-num" style="background:var(--green);">4</div><div class="stage-body"><div class="stage-name" style="color:var(--green);">ERP Reconciliation — 8 min ⭐ This is where enterprise deals get emotionally won</div><div class="stage-desc">Show payments flowing back into [their ERP] automatically with remittance detail.</div><div class="msg-box">"When a payment comes in, it syncs back into [their ERP] automatically. No manual matching — it posts directly."</div><div style="font-size:12px;color:var(--muted);margin-top:4px;"><strong>Controller moment.</strong> This is often where the "aha" happens. Slow down here.</div></div></div>
+  <div class="stage"><div class="stage-num">5</div><div class="stage-body"><div class="stage-name">Cash Visibility &amp; Reporting — 5 min</div><div class="stage-desc">Real-time AR dashboard, aging, payment behavior trends. <strong>CFO + Shared Services moment.</strong></div><div style="font-size:12px;color:var(--muted);margin-top:4px;">Frame it as a forecasting tool, not just a report. 18 months of data. AI-powered insights coming.</div></div></div>
+  <div class="stage"><div class="stage-num">6</div><div class="stage-body"><div class="stage-name">Q&amp;A + Confirmed Next Steps — 5 min</div><div class="msg-box">"Based on what you've seen — does this address what you described in our first conversation?"</div><div class="avoid-box">❌ Never leave without a confirmed next action and a named next-step owner on their side. A deal without a confirmed next step is a deal in limbo.</div></div></div>
+
+  <div class="sec-label">Closing Tactics</div>
+  <div class="card">
+    <div class="grid-2">
+      <div><div class="card-title">Assumptive Close</div><div class="msg-box" style="font-size:12px;">"Let's get the agreement over to you this week — what's the best contact for contracts?"</div></div>
+      <div><div class="card-title">ROI Close</div><div class="msg-box" style="font-size:12px;">"Based on what we calculated, you're absorbing $X in card fees annually and your team is spending Y hours on manual matching. That math changes on day one."</div></div>
+      <div><div class="card-title">Urgency Close</div><div class="msg-box" style="font-size:12px;">Tie to fiscal year end, quarter close, budget cycle, or heavy collections period.</div></div>
+      <div><div class="card-title">No-Disruption Close</div><div class="msg-box" style="font-size:12px;">"We're not asking you to change your ERP or your workflow. We're adding one layer that makes everything else easier."</div></div>
+    </div>
+  </div>
+
+  <div class="sec-label">Pre-Close Checklist</div>
+  <div class="card">
+    <ul class="checklist">
+      <li>All stakeholders (CFO, Controller, AR Director) aligned</li>
+      <li>ERP environment confirmed</li>
+      <li>All objections surfaced and addressed</li>
+      <li>ROI documented and shared — champion armed with internal approval language</li>
+      <li>Contract / proposal sent</li>
+      <li>IT introduction made (if needed)</li>
+      <li>Follow-up date confirmed with named owner on their side</li>
+    </ul>
+  </div>
+
+  <div class="sec-label">CS Handoff — What to Pass Along</div>
+  <div class="card">
+    <div class="card-sub">Never hand off cold. Context is what turns a signed contract into a live customer. The handoff is the first page of the customer's Bill360 story.</div>
+    <table>
+      <tr><th>What to Document</th><th>Why It Matters</th></tr>
+      <tr><td>ERP platform &amp; version</td><td>Drives the entire onboarding and integration path</td></tr>
+      <tr><td>Gateway/middleware in use</td><td>Integration complexity and scope</td></tr>
+      <tr><td>Key contacts and their roles</td><td>CS knows who's the champion vs. day-to-day user</td></tr>
+      <tr><td>Primary pain points from discovery</td><td>CS can speak to what was promised and prioritize setup accordingly</td></tr>
+      <tr><td>Payment methods in scope</td><td>Determines activation priorities (ACH, card, surcharging)</td></tr>
+      <tr><td>Any commitments made during sale</td><td>Prevents broken expectations and churn risk</td></tr>
+      <tr><td>Multi-entity / franchise structure</td><td>CS scopes correctly for shared services environments</td></tr>
+      <tr><td>Surcharging enrollment status</td><td>Yes / No / Considering — CSM needs to know before onboarding</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- GATEWAY INTEL -->
+<div id="intel" class="section content">
+  <div class="page-title">Gateway &amp; Payments Intel</div>
+  <div class="page-sub">The stuff AEs need to know without drowning in the details. Cliff notes, not the textbook.</div>
+
+  <div class="analogy-box">
+    <div class="analogy-label">The Map Analogy</div>
+    <div class="analogy-text">Payment infrastructure is like a city road map. The ERP is the starting point. Bill360 is the destination. Sometimes there's a direct road (native integration). Sometimes there's a highway interchange in the middle (the gateway). AEs don't need to be traffic engineers — but they should know whether the deal has a direct route or involves a highway interchange before they start giving directions.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">What a Payment Gateway Is (for non-technical buyers)</div>
+    <div style="font-size:13px;color:#334155;line-height:1.7;margin-top:8px;">A payment gateway securely transmits payment data between a buyer, a seller's ERP/website, and the payment processor. Think of it like a toll booth — it checks credentials, approves the transaction, and passes it along. In B2B deals, gateways also handle tokenization (storing card data securely). Bill360 is the processor and AR platform on the receiving end. A gateway partner like SnapPay or Payfabric is the road that delivers the transaction to Bill360.</div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Level 2 / Level 3 Data — AE Cliff Notes</div>
+      <div class="analogy-box" style="margin-top:10px;"><div class="analogy-label">The Coffee Analogy</div><div class="analogy-text">L2/L3 is like the loyalty discount on your coffee — it's already there, you just have to show your card. Most businesses never show the card. Bill360 shows it automatically.</div></div>
+      <div style="font-size:13px;color:#334155;line-height:1.6;margin-top:10px;">When a business pays with a corporate purchasing card, Visa/MC offer lower interchange rates if the seller includes extra line-item detail (Level 2 and Level 3 data). Most companies don't submit it — and overpay on processing fees. Bill360 automates L2/L3 data submission.</div>
+      <div style="margin-top:10px;padding:10px;background:#f0fdf4;border-radius:8px;font-size:12px;color:#14532d;"><strong>When to bring it up:</strong> Prospect mentions high card processing costs, or their customers pay by corporate purchasing card.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">ACH vs. Card — The B2B Math</div>
+      <div style="margin-top:10px;">
+        <div style="background:#f0fdf4;border-radius:8px;padding:14px;margin-bottom:10px;">
+          <div style="font-size:22px;font-weight:800;color:var(--green);">$9.69</div>
+          <div style="font-size:13px;color:#14532d;font-weight:600;">$25,000 invoice paid via ACH</div>
+          <div style="font-size:12px;color:var(--muted);">= 0.04% effective rate</div>
+        </div>
+        <div style="background:#fef2f2;border-radius:8px;padding:14px;">
+          <div style="font-size:22px;font-weight:800;color:var(--coral);">$500</div>
+          <div style="font-size:13px;color:#991b1b;font-weight:600;">$25,000 invoice paid via card at 2%</div>
+          <div style="font-size:12px;color:var(--muted);">= $490.31 more expensive than ACH</div>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5;">For companies processing 200+ large B2B invoices/month: this is a strategic decision, not a minor detail.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">MID Structure — Why It Matters (Franchise &amp; Multi-Entity)</div>
+    <div class="analogy-box" style="margin-top:10px;"><div class="analogy-label">The Family Credit Score Analogy</div><div class="analogy-text">A shared MID across locations is like having one credit score for your entire family — one person's problem becomes everyone's problem. Bill360 gives each entity its own clean identity under a managed structure.</div></div>
+    <div style="font-size:13px;color:#334155;line-height:1.6;margin-top:10px;">Shared MIDs across franchise/multi-entity locations mean one location's chargeback or fraud risk cascades to all. Bill360 is a full-risk PayFac — it handles underwriting, compliance, and MID setup on behalf of clients. Major value-add for franchise and multi-entity prospects.</div>
+    <div style="margin-top:10px;padding:10px;background:#f0fdf4;border-radius:8px;font-size:12px;color:#14532d;"><strong>What to say:</strong> "As a full-risk PayFac, Bill360 handles the underwriting, compliance, and MID setup on your behalf — you're not exposed to chargeback risk cascading across locations." For deeper detail, hand off to the solutions team.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Surcharging — What AEs Need to Know (Internal Only)</div>
+    <div class="grid-2" style="margin-top:12px;">
+      <div>
+        <div class="signal-card green"><div class="signal-label green">✅ DO</div>
+          <div class="signal-item">Offer to net-new clients who ask</div>
+          <div class="signal-item">Position as a margin protection tool</div>
+          <div class="signal-item">Highlight Bill360 handles compliance automatically</div>
+          <div class="signal-item">Explain ~40% drop in card volume is expected and a win</div>
+        </div>
+      </div>
+      <div>
+        <div class="signal-card red"><div class="signal-label red">❌ DON'T</div>
+          <div class="signal-item">Offer to existing clients who haven't asked</div>
+          <div class="signal-item">Pitch in CT or MA — not allowed</div>
+          <div class="signal-item">Promise it's a "no cost" solution for all card fees</div>
+          <div class="signal-item">Position Bill360 as automating surcharging compliance for sellers</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:12px;padding:12px;background:#fef3c7;border-radius:8px;font-size:13px;color:#92400e;"><strong>Pricing:</strong> $20/month program fee + 0.50% per transaction (can go to 0.30% with approval). Standard Bill360 platform and processing fees still apply.</div>
+    <div class="analogy-box" style="margin-top:10px;"><div class="analogy-label">The Gas Station Analogy</div><div class="analogy-text">Surcharging is like the cash vs. credit price at a gas station. It's legal, transparent, and shifts the cost to the person making the choice to pay by card. It's not a trick — it's alignment.</div></div>
+  </div>
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const btns = document.querySelectorAll('.nav-btn');
+  const map = {overview:0,icp:1,outreach:2,discovery:3,messaging:4,thirdparty:5,competitive:6,objections:7,demo:8,intel:9,cadence:10,contacts:11,surcharging:12,ach101:13,cc101:14,ccb2b:15,erp101:16};
+  btns[map[id]].classList.add('active');
+  window.scrollTo(0,0);
+}
+</script>
+
+<!-- ══ 12-TOUCH CADENCE ══════════════════════════════════════════════════ -->
+<div id="cadence" class="section content">
+  <div class="page-title">12-Touch B2B Cold Outreach Cadence</div>
+  <div class="page-sub">3–4 weeks. 12 minimum touches. Multi-channel. Every touch has a different purpose — never repeat "just checking in."</div>
+
+  <div class="card" style="border-left:4px solid var(--coral);">
+    <div class="card-title" style="color:var(--coral);">The Cardinal Rule of Every Outreach Touch</div>
+    <div style="font-size:14px;font-weight:700;color:var(--navy);margin:10px 0;line-height:1.5;">If you can delete the first line of your email and the rest still makes sense — that first line was about <em>you</em>, not them. Rewrite it.</div>
+    <div style="font-size:13px;color:#334155;margin-top:6px;">Every touch must have a distinct purpose. Combining phone, email, and social outreach increases response rates significantly compared to a single channel. Think of each channel as a different entrance to the same building — some prospects read every email and ignore every call; others are the reverse. A structured multi-channel cadence means you're at every door.</div>
+    <div class="avoid-box" style="margin-top:10px;"><strong>Phrases that kill response rates (fact-checked against Gong, Salesloft, and RAIN Group research):</strong><br>
+    ❌ "We help you automate your AR…" &nbsp;|&nbsp; ❌ "I wanted to reach out about Bill360…" &nbsp;|&nbsp; ❌ "Just checking in on my last email…"<br>
+    ❌ "Our platform helps companies like yours…" &nbsp;|&nbsp; ❌ "I hope this email finds you well…" &nbsp;|&nbsp; ❌ Subject: "Following up" or "Quick question"
+    </div>
+    <div class="green-box" style="margin-top:8px;">"A 'no' doesn't end the conversation — it opens the negotiation."</div>
+  </div>
+
+  <div class="sec-label">The 12-Touch Cadence Schedule</div>
+  <div class="card">
+    <div class="card-sub">Total touches: 12 over 25 days. Each touch has a distinct purpose — no two angles repeat.</div>
+    <table>
+      <tr><th>Day</th><th>Channel</th><th>Purpose</th></tr>
+      <tr><td><strong>Day 1</strong></td><td><span class="tag tag-blue">📞 Phone Call</span></td><td>Live call attempt. If answered: intro + one observation question. Goal: qualify or book meeting.</td></tr>
+      <tr><td><strong>Day 2</strong></td><td><span class="tag tag-green">✉️ Email 1</span></td><td>Observation-only opener. Lead with a pain signal. Zero pitch. One CTA: "Worth 15 min to compare notes?"</td></tr>
+      <tr><td><strong>Day 3</strong></td><td><span class="tag tag-purple">LinkedIn Connect</span></td><td>Connection request with identity-based note ≤300 chars. No product mention. Shared AR/finance community.</td></tr>
+      <tr><td><strong>Day 4</strong></td><td><span class="tag tag-blue">📞 Call + VM</span></td><td>Call attempt. If no answer, leave a 20-second voicemail referencing the email. Conversational, not scripted.</td></tr>
+      <tr><td><strong>Day 6</strong></td><td><span class="tag tag-green">✉️ Email 2</span></td><td>Add the implication. What does their pain actually cost them? Reference DSO or manual AR hours.</td></tr>
+      <tr><td><strong>Day 8</strong></td><td><span class="tag tag-blue">📞 Call</span></td><td>Third call attempt. Try a different time of day. If live: reference your prior email as a door-opener.</td></tr>
+      <tr><td><strong>Day 10</strong></td><td><span class="tag tag-purple">LinkedIn DM</span></td><td>Post-connect DM: Observation → Implication → One Idea → One Question. See pain library in Outreach tab.</td></tr>
+      <tr><td><strong>Day 12</strong></td><td><span class="tag tag-amber">💬 Text</span></td><td>Text only if you have a verified mobile (ZoomInfo/Apollo). Brief, professional, references prior outreach.</td></tr>
+      <tr><td><strong>Day 15</strong></td><td><span class="tag tag-green">✉️ Email 3</span></td><td>Social proof: "Companies using Bill360 reduced DSO by up to 48% within 6 months." Entirely new angle.</td></tr>
+      <tr><td><strong>Day 18</strong></td><td><span class="tag tag-purple">LinkedIn Audio</span></td><td>60–90 sec voice recording via LinkedIn messaging. Very few AEs use this — stand out. Best after connection is accepted.</td></tr>
+      <tr><td><strong>Day 21</strong></td><td><span class="tag tag-green">✉️ Email 4</span></td><td>Different angle entirely — card fee / L2L3 / surcharging. "One thing that doesn't come up until someone points it out…"</td></tr>
+      <tr><td><strong>Day 25</strong></td><td><span class="tag tag-blue">📞 Final Call</span></td><td>Breakup call. If no answer, send breakup email: "I'll stop reaching out after this. If AR automation comes back up, I'm easy to find."</td></tr>
+    </table>
+  </div>
+
+  <div class="sec-label">Channel Guidance</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">📞 Phone Calls</div>
+      <div style="font-size:13px;color:#334155;line-height:1.7;">Calls remain one of the most effective channels for generating live conversations. Multiple call attempts throughout the cadence increase the chance of catching a prospect at the right moment. Voicemails work strategically when used to reinforce a previous email — never leave a voicemail on day one without a prior email anchor.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">✉️ Email</div>
+      <div style="font-size:13px;color:#334155;line-height:1.7;">Each email must serve a distinct function. Email 1 = observation only. Email 2 = implication. Email 3 = proof. Email 4 = different angle. Multiple emails across the cadence reinforce the message without repeating it — which is why mapping each email's purpose in advance prevents the "just following up" trap.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">LinkedIn Engagement</div>
+      <div style="font-size:13px;color:#334155;line-height:1.7;">LinkedIn builds familiarity before the ask. Activities include connection requests (with the identity note), post-connect DMs (following the Observation → Implication → Idea → Question structure), engaging with the prospect's posts, and sharing relevant industry content. Audio messages stand out precisely because very few sellers use them.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">💬 Text Messaging</div>
+      <div style="font-size:13px;color:#334155;line-height:1.7;">Text should only be used when a verified mobile number is available from a trusted data provider like ZoomInfo or Apollo. Use it sparingly — after several previous outreach attempts — and keep it brief and professional. Never cold-text. Text is most effective as a mid-cadence bump, not an opener.</div>
+    </div>
+  </div>
+
+  <div class="sec-label">Cadence Best Practices</div>
+  <div class="card">
+    <div style="font-size:13px;color:#334155;line-height:1.8;">
+      <strong>1. Every touch has a different purpose.</strong> One of the highest-performing behaviors in B2B direct sales is making sure every touch has a distinct angle — not repeating "just checking in." Map the purpose of each touch before you start the cadence.<br><br>
+      <strong>2. Account-based focus.</strong> Each cadence should focus on a specific target account and the key decision-makers within it, rather than broad untargeted outreach. Know who you're going after before you dial.<br><br>
+      <strong>3. Persistence over time.</strong> Many responses occur after the 7th or 8th touch. Most AEs give up after 2–3. Maintaining outreach over multiple weeks improves the likelihood of engagement significantly — the data consistently shows this across Gong, Salesloft, and RAIN Group research.<br><br>
+      <strong>4. Consistent visibility without overwhelming.</strong> A structured cadence creates visibility at a predictable pace. The prospect sees you regularly, but not so frequently that it feels like spam. Spacing is as important as the message itself.
+    </div>
+  </div>
+</div>
+
+<!-- ══ 3RD PARTY CONTACTS ════════════════════════════════════════════════ -->
+<div id="contacts" class="section content">
+  <div class="page-title">3rd Party Partner Contacts</div>
+  <div class="page-sub">When a gateway or middleware partner is in a deal, know who you're sitting across from before the call starts. Coordinate before demo day — not during the call.</div>
+
+  <div class="card" style="background:var(--navy);border-color:var(--navy);color:#fff;">
+    <div style="font-size:14px;font-weight:700;margin-bottom:8px;">The Golden Rules for 3rd Party Deals</div>
+    <div style="font-size:13px;line-height:1.9;opacity:.9;">
+      🔀 &nbsp;Gateway partners route and tokenize transactions. Bill360 handles payment rails + the full AR automation layer — always, regardless of what gateway sits in front.<br>
+      🎯 &nbsp;Know who the 3rd party is before demo day — not during the call.<br>
+      📞 &nbsp;Coordinate with your partner contact (Miguel for SnapPay; Shane + Adam for NewGen) before every demo that involves a 3rd party.<br>
+      💪 &nbsp;Never let a gateway's presence shrink your value prop. They don't do collections, reminders, or reconciliation. You do.
+    </div>
+  </div>
+
+  <div class="partner-card">
+    <div class="partner-header">
+      <div><div class="partner-name">SnapPay (Fiserv)</div><div class="partner-role">Middleware / Payment Router</div></div>
+      <span class="tag tag-blue">SAP · Oracle EBS · NetSuite</span>
+    </div>
+    <div class="partner-body">
+      <div class="grid-2">
+        <div>
+          <div class="sec-label">Role in the Deal</div>
+          <div style="font-size:13px;color:#334155;line-height:1.7;">SnapPay sits between the ERP and Bill360/Fiserv — routing credit cards to one gateway and ACH to another. Handles tokenization and authorization calls. Bill360 is the downstream payment processor and AR automation platform.</div>
+          <div style="margin-top:12px;">
+            <table>
+              <tr><th>ERP</th><th>Status</th><th>Surcharge?</th></tr>
+              <tr><td>SAP</td><td>Active</td><td>✅ Yes</td></tr>
+              <tr><td>Oracle EBS</td><td>Active</td><td>✅ Yes</td></tr>
+              <tr><td>Oracle Cloud</td><td>Active</td><td>TBD</td></tr>
+              <tr><td>NetSuite</td><td>Active</td><td>✅ Yes</td></tr>
+              <tr><td>Microsoft Dynamics</td><td>In Progress</td><td>❌ No</td></tr>
+              <tr><td>Workday</td><td>In Progress</td><td>❌ No</td></tr>
+            </table>
+          </div>
+          <div class="warn-box" style="margin-top:10px;">⚠️ SnapPay also has its own invoicing portal and surcharging program. Know the overlap — positioning must stay clean: SnapPay = routing, Bill360 = AR automation + payment rails.</div>
+        </div>
+        <div>
+          <div class="sec-label">Key Contacts — SnapPay / Fiserv</div>
+          <div class="contact-card">
+            <div class="contact-name">Miguel [Last Name]</div>
+            <div class="contact-role">Demo Lead · Fiserv</div>
+            <div class="contact-note">Runs SnapPay demos from the Fiserv side. Coordinate <strong>before</strong> any demo where SnapPay is involved — never on the day of.</div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-name">Matt [Last Name]</div>
+            <div class="contact-role">Product Specialist · SnapPay</div>
+            <div class="contact-note">Deep product knowledge. Escalate technical questions about SnapPay functionality or ERP integrations to Matt.</div>
+          </div>
+          <div class="sec-label" style="margin-top:14px;">Talk Track</div>
+          <div class="msg-box">"SnapPay handles routing and tokenization between the ERP and the processor. Bill360 sits downstream as the payment processor and AR automation layer — they're complementary. SnapPay moves the transaction, Bill360 closes the loop with reconciliation, collections workflow, and the customer payment experience."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="partner-card">
+    <div class="partner-header">
+      <div><div class="partner-name">NewGen Business Solutions + PayTrace</div><div class="partner-role">NetSuite ERP Partner (NewGen) · Gateway in NetSuite Deals (PayTrace)</div></div>
+      <span class="tag tag-blue">NetSuite</span>
+    </div>
+    <div class="partner-body">
+      <div class="grid-2">
+        <div>
+          <div class="sec-label">How This Partnership Works</div>
+          <div style="font-size:13px;color:#334155;line-height:1.7;margin-bottom:10px;">Bill360 and NewGen are NetSuite implementation partners. When a prospect is a NetSuite user sourced through NewGen, PayTrace is the gateway used in that deal. NewGen introduces Bill360 to their NetSuite client base as a referral/channel relationship.</div>
+          <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px;">What NewGen Does:</div>
+          <ul style="list-style:disc;padding-left:16px;font-size:12px;color:#334155;line-height:1.9;"><li>NetSuite implementation &amp; consulting partner (25+ years)</li><li>Introduces Bill360 to their NetSuite client base</li><li>Referral / channel relationship with Bill360</li><li>PayTrace is the gateway layer in NewGen-sourced deals</li></ul>
+          <div style="font-size:13px;font-weight:700;color:var(--navy);margin-top:10px;margin-bottom:6px;">What PayTrace Does NOT Do:</div>
+          <ul style="list-style:disc;padding-left:16px;font-size:12px;color:var(--coral);line-height:1.9;"><li>AR automation or collections workflows</li><li>DSO analytics or invoice-level messaging</li><li>Buyer/seller collaboration portal</li><li>Bill360 layers the full AR automation on top</li></ul>
+          <div class="warn-box" style="margin-top:8px;font-size:11px;">Source: NewGen Business Solutions · T: 1-877-932-2478 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4d3e2c21283e0d23283a2a282323223a632e2220">[email&#160;protected]</a> · Scottsdale, AZ 85260</div>
+        </div>
+        <div>
+          <div class="sec-label">Key Contacts — NewGen</div>
+          <div class="contact-card">
+            <div class="contact-name">Shane [Last Name]</div>
+            <div class="contact-role">Primary Contact · NewGen</div>
+            <div class="contact-note">Primary NewGen relationship. Coordinate on NetSuite deals where NewGen is the implementation partner.</div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-name">Adam [Last Name]</div>
+            <div class="contact-role">Deal Support · NewGen</div>
+            <div class="contact-note">Support contact at NewGen. Involved in deal execution and partner coordination alongside Shane.</div>
+          </div>
+          <div class="sec-label" style="margin-top:14px;">Talk Track</div>
+          <div class="msg-box">"PayTrace is the gateway — it secures the transaction and stores the card on file. Bill360 is the full AR automation layer: reminders, digital invoices, collections workflows, and reconciliation back into NetSuite. They're doing different jobs."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label">Pre-Demo 3rd Party Checklist</div>
+  <div class="card">
+    <ul class="checklist">
+      <li>Asked prospect in discovery: "Do you use any payment gateway or middleware today?"</li>
+      <li>Gateway identified (SnapPay, Payfabric, PayTrace via NewGen, or other)</li>
+      <li>Reviewed the correct partner profile in the "3rd Parties" tab</li>
+      <li>Confirmed with manager/solutions team if integration details are uncertain</li>
+      <li>If SnapPay: contacted Miguel for demo coordination <em>before</em> the call</li>
+      <li>If NewGen/PayTrace: contacted Shane or Adam for coordination</li>
+      <li>If gateway rep joining: "who covers what" agreed before showtime, not during it</li>
+      <li>Clean lane separation ready: "Bill360 = payment rails + AR automation. Gateway = routing/tokenization. Two different jobs."</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══ SURCHARGING DEEP DIVE ═════════════════════════════════════════════ -->
+<div id="surcharging" class="section content">
+  <div class="page-title">Surcharging Deep Dive</div>
+  <div class="page-sub">Internal use only. Everything AEs need to sell, position, and navigate surcharging conversations — without overstepping into legal advice.</div>
+
+  <div class="card" style="border-left:4px solid var(--coral);background:#fff7ed;">
+    <div class="card-title" style="color:var(--coral);">⚖️ Required Disclaimer — Say This to Every Client</div>
+    <div class="msg-box">"Interpretation of legal rules and regulations and the impact of such rules and regulations on your business may involve in-depth legal analysis which Bill360 cannot provide. Our conversations should not be considered 'legal advice.' You should consult your attorney for more detailed advice regarding how to be compliant with surcharging."</div>
+    <div style="font-size:12px;color:var(--muted);margin-top:4px;">Source: Bill360 Surcharging FAQs — Internal Use Only, 11/18/24</div>
+  </div>
+
+  <div class="analogy-box">
+    <div class="analogy-label">The Gas Station Analogy — Use This to Explain Surcharging</div>
+    <div class="analogy-text">Surcharging is like the cash vs. credit price at a gas station. It's legal, transparent, and shifts the cost to the person making the choice to pay by card. It's not a trick — it's alignment. When framed this way, most B2B buyers accept it as standard practice, especially when ACH is offered as a no-fee alternative.</div>
+  </div>
+
+  <div class="grid-2">
+    <div class="signal-card green">
+      <div class="signal-label green">✅ DO — Selling Guidance</div>
+      <div class="signal-item">Offer to net-new Bill360 clients who ask</div>
+      <div class="signal-item">Position as a margin protection tool</div>
+      <div class="signal-item">Highlight that Bill360 automates the surcharging process</div>
+      <div class="signal-item">Stress the importance of having a compliant process (ours is)</div>
+      <div class="signal-item">Encourage sellers to consult their lawyer and accountant</div>
+      <div class="signal-item">Help sellers understand how and when fees will deposit</div>
+    </div>
+    <div class="signal-card red">
+      <div class="signal-label red">❌ DON'T — What To Avoid</div>
+      <div class="signal-item">Offer to existing Bill360 clients who have not previously asked</div>
+      <div class="signal-item">Position Bill360 as automating surcharging <em>compliance</em> for sellers</div>
+      <div class="signal-item">Allude that Bill360 lessens the seller's compliance responsibility</div>
+      <div class="signal-item">Pitch to companies in states that do not allow surcharging (CT, MA)</div>
+      <div class="signal-item">Promise it's a "no cost" solution for all credit card fees</div>
+      <div class="signal-item">Advise using a "convenience fee" to offset costs instead</div>
+    </div>
+  </div>
+
+  <div class="sec-label">The Surcharging Provider Checklist — Use This to Expose Competitor Risk</div>
+  <div class="card">
+    <div class="card-sub">Source: Bill360 Surcharging Provider Checklist (published). If a prospect's current provider answers "yes" to any of these, they are at legal and financial risk. Non-compliant surcharging isn't just risky — it's expensive.</div>
+    <div class="grid-2">
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--coral);margin-bottom:8px;">Consequences of Non-Compliance:</div>
+        <ul style="list-style:disc;padding-left:16px;font-size:12px;color:#334155;line-height:1.9;">
+          <li>$1,000 fines per instance</li>
+          <li>Frequent chargebacks</li>
+          <li>Legal exposure</li>
+          <li>Reputational damage</li>
+          <li>Payments blacklisting</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--coral);margin-bottom:8px;">Red Flags in a Competitor's Surcharging Setup:</div>
+        <ul style="list-style:disc;padding-left:16px;font-size:12px;color:#334155;line-height:1.9;">
+          <li>Applies surcharges to debit or prepaid cards (even when run as "credit")</li>
+          <li>Flat surcharge rate without adjusting for actual cost or state-mandated caps</li>
+          <li>Fails to disclose the surcharge at checkout</li>
+          <li>Hides or lumps surcharge into total instead of itemizing on receipt</li>
+          <li>Enabled without registering with Visa® or Mastercard®</li>
+          <li>Allows surcharging in banned states (MA or CT)</li>
+          <li>Ignores state-specific rules (e.g., 2% cap in CO)</li>
+          <li>Surcharges Amex® without also surcharging all other card brands</li>
+          <li>Disguises surcharge as a "convenience fee"</li>
+          <li>Provides no audit trail or transaction-level surcharge reporting</li>
+          <li>Does not monitor for card brand or state rule changes</li>
+        </ul>
+      </div>
+    </div>
+    <div class="green-box" style="margin-top:10px;"><strong>How Bill360 handles all of this:</strong> Pre-registration with Visa® &amp; Mastercard® covered · Location-based decisioning (seller + buyer zip) · Dynamic rate capping for all card networks &amp; states · Transparent disclosure formatting at checkout · Clear transaction-level audit trail · Ongoing monitoring of changing rules/regulations</div>
+  </div>
+
+  <div class="sec-label">State-Specific Rules (Key States)</div>
+  <div class="card">
+    <table>
+      <tr><th>State</th><th>Rule</th><th>AE Action</th></tr>
+      <tr><td><strong>Connecticut (CT)</strong></td><td style="color:var(--coral);">Surcharging prohibited</td><td>Do NOT pitch surcharging to CT-based merchants — applies regardless of where the customer is located</td></tr>
+      <tr><td><strong>Massachusetts (MA)</strong></td><td style="color:var(--coral);">Surcharging prohibited</td><td>Do NOT pitch surcharging to MA-based merchants</td></tr>
+      <tr><td><strong>Colorado (CO)</strong></td><td>Cap at 2% (not 3%)</td><td>Bill360 handles this automatically via dynamic rate capping — note to prospect</td></tr>
+      <tr><td><strong>Minnesota (MN)</strong></td><td>Legislation pending — monitor</td><td>Flag to manager if MN prospect asks about surcharging</td></tr>
+      <tr><td><strong>All other states</strong></td><td>Permitted up to 3%</td><td>Bill360 handles location-based auto-adjustment automatically</td></tr>
+    </table>
+    <div style="font-size:12px;color:var(--muted);margin-top:8px;">Source: Bill360 Surcharging FAQs — Internal Use Only, 11/18/24. Bill360 monitors state-level changes and notifies clients through standard product release process.</div>
+  </div>
+
+  <div class="sec-label">Surcharging Pricing (Internal — Do Not Distribute)</div>
+  <div class="card">
+    <table>
+      <tr><th>Fee</th><th>Amount</th><th>Notes</th></tr>
+      <tr><td>Monthly Program Fee</td><td><strong>$20/month</strong></td><td>Standard</td></tr>
+      <tr><td>Program Rate Fee (per transaction)</td><td><strong>0.50%</strong></td><td>Can go to 0.30% but approval needed from sales leader</td></tr>
+      <tr><td>Maximum surcharge rate</td><td><strong>Up to 3%</strong></td><td>Cannot exceed merchant's actual cost of processing (Bill360 clients pay 2.99% + fees)</td></tr>
+      <tr><td>Standard Bill360 fees</td><td>Still apply</td><td>Fees apply to entire transaction including the surcharge amount</td></tr>
+    </table>
+    <div class="warn-box" style="margin-top:8px;">Contact your sales leader to offer fee discounts or get approval on ad hoc pricing requests.</div>
+  </div>
+
+  <div class="sec-label">Market Realities — Know These Before You Pitch</div>
+  <div class="card">
+    <div class="warn-box">📉 <strong>~40% drop in card volume is expected</strong> when a seller starts surcharging — buyers shift to ACH or other payment methods. Position this as a win upfront: lower-cost ACH replaces higher-cost card, and the seller stops absorbing fees on the card transactions that remain.</div>
+    <div class="warn-box" style="margin-top:8px;">⚠️ <strong>Negative stigma risk:</strong> To some B2B buyers, surcharging can feel like a penalty. Clients should frame it clearly, apply it consistently, and offer ACH as a no-fee alternative. Framing and transparency minimize pushback.</div>
+    <div class="warn-box" style="margin-top:8px;">📋 <strong>Seller compliance responsibility:</strong> Even with Bill360 handling the automation, sellers ultimately agree to follow card network rules, state laws, and federal regulations in their Merchant Agreement. Bill360 automates compliance tools — it does not transfer compliance responsibility.</div>
+    <div class="warn-box" style="margin-top:8px;">🔄 <strong>Signup process:</strong> (1) Book a meeting with AE/CSM → (2) Review &amp; e-sign surcharging addendum → (3) Underwriting sets up surcharging MID → (4) CSM completes setup → (5) Client contacts CSM to adjust percentage or turn off.</div>
+  </div>
+</div>
+
+<!-- ══ ACH FOR DUMMIES ════════════════════════════════════════════════════ -->
+<div id="ach101" class="section content">
+  <div class="page-title">ACH Processing 101 + Payment Strategy</div>
+  <div class="page-sub">Understanding ACH vs. card payments — and why Bill360 is not just a payment processor. It is a bundled AR automation + payment platform.</div>
+
+  <div class="rule-box" style="background:var(--navy);">
+    <div class="rule-title" style="color:#fff;">Core Sales Message</div>
+    <div class="rule-text" style="color:#fff;">Bill360 is not just a payment processor. It is a bundled AR automation + payment platform designed to accelerate collections, reduce manual AR work, improve the customer payment experience, provide multiple payment options, and automatically reconcile payments back into your accounting system. <strong style="color:#fff;">Payments are simply one part of the larger automation engine.</strong></div>
+  </div>
+
+  <div class="card" style="border-left:4px solid var(--coral);">
+    <div class="card-title">Important Context for Sales Reps</div>
+    <div style="font-size:13px;color:#334155;line-height:1.7;">Many prospects will say they already process ACH through their bank and assume that solves their AR problem. It does not. Banks typically provide basic ACH transfer capability — they do not provide the automation, workflow, and payment orchestration needed for efficient invoice-to-cash operations. <strong>ACH processing alone is not AR automation.</strong><br><br>Bill360 combines AR automation, a customer payment experience, payment processing (ACH + credit card), and reconciliation and reporting into a single workflow platform. That bundled value is what you are selling — not just a way to move money.</div>
+  </div>
+
+  <div class="sec-label">What ACH Is — In Plain English</div>
+  <div class="card">
+    <div style="font-size:13px;color:#334155;line-height:1.7;">ACH stands for Automated Clearing House — the electronic network used to move money between bank accounts in the U.S. When a business pays an invoice via ACH (also called eCheck or bank transfer), funds move directly from the buyer's bank account to the seller's bank account through the Federal Reserve's ACH network. There are no card networks involved, no interchange fees, and no percentage-based processing costs. It is a reliable, low-cost method for moving large sums between businesses — and it is standard practice in wholesale, manufacturing, distribution, and professional services.</div>
+  </div>
+
+  <div class="sec-label">ACH vs. Card — Understanding the Trade-Offs</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">When ACH Makes Sense</div>
+      <ul style="list-style:disc;padding-left:16px;font-size:13px;color:#334155;line-height:1.9;margin-top:8px;">
+        <li>Very large invoices ($10K+) where card interchange eats meaningful margin</li>
+        <li>Customers who are businesses with corporate bank accounts</li>
+        <li>High-volume B2B industries: wholesale, manufacturing, distribution</li>
+        <li>Clients actively looking to reduce card processing costs via surcharging</li>
+        <li>ACH is offered as a payment option within the Bill360 platform alongside card — clients can enable both and let buyers choose at checkout</li>
+        <li><strong>Bill360 ACH pricing: 1.00% + $0.30 per transaction, no cap.</strong> For clients with large B2B invoices and meaningful corporate card volume, this is worth comparing to their current card processing costs in a discovery conversation.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">When Cards Drive More Value</div>
+      <ul style="list-style:disc;padding-left:16px;font-size:13px;color:#334155;line-height:1.9;margin-top:8px;">
+        <li>Smaller invoice sizes where ACH savings are modest</li>
+        <li>Customers who want the convenience of card on file for autopay</li>
+        <li>Faster payment behavior — customers with cards on file pay faster</li>
+        <li>Credit card processing is <strong>a primary revenue driver for Bill360</strong> — our interchange share makes this meaningful</li>
+        <li>Card volume enables surcharging revenue recovery and L2/L3 optimization</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="analogy-box">
+    <div class="analogy-label">The Positioning Analogy</div>
+    <div class="analogy-text">Think of Bill360 like a full-service restaurant, not just a cash register. ACH and cards are both items on the menu. The restaurant is the AR automation platform — the workflow, the reminders, the reconciliation, the portal. A customer asking "do you accept ACH?" is like asking if the restaurant takes cash. The real question is whether they want the full dining experience, not just a place to hand over money.</div>
+  </div>
+
+  <div class="sec-label">Payment Strategy — What to Push and Why</div>
+  <div class="card">
+    <div class="card-sub">The goal is not to steer every customer to ACH. The goal is to get them onto the Bill360 platform with multiple payment options active — and let the data tell the story.</div>
+    <table>
+      <tr><th>Scenario</th><th>Recommended Strategy</th><th>Why</th></tr>
+      <tr><td>Prospect absorbing high card fees on large invoices</td><td>Lead with surcharging + L2/L3 optimization to reduce cost; position ACH as a buyer preference option</td><td>Reduces their pain; keeps card volume on the platform</td></tr>
+      <tr><td>Prospect wants faster collections</td><td>Lead with autopay via card on file + automated reminders</td><td>Cards on file + automation = fastest payment behavior</td></tr>
+      <tr><td>Prospect says bank gives them ACH for free</td><td>Acknowledge ACH; pivot to what the bank does NOT provide (see rebuttals below)</td><td>The differentiator is AR automation, not the ACH itself</td></tr>
+      <tr><td>Prospect has mixed customer base</td><td>Offer both; let customers choose at checkout; capture the card revenue where it happens naturally</td><td>More payment options = higher adoption = more volume on platform</td></tr>
+    </table>
+  </div>
+
+  <div class="sec-label">Objection Rebuttals — Reframed for Platform Positioning</div>
+
+  <div class="obj-card">
+    <div class="obj-q">"Our bank gives us ACH for free."</div>
+    <div class="obj-a">That's very common — banks often provide ACH transfers at little or no cost. What our customers find, though, is that the real cost is the manual work around collections. Teams still spend time sending reminder emails, tracking down payments, matching payments to invoices, handling disputes, and updating accounting systems. Bill360 eliminates most of that manual work while giving customers an easy way to pay directly from the invoice — whether that's ACH, card, or card on file for autopay. So the value isn't the ACH processing itself — it's the automation and efficiency around the entire AR process.</div>
+  </div>
+
+  <div class="obj-card">
+    <div class="obj-q">"Why would we switch if we already have payments?"</div>
+    <div class="obj-a">That's a great question. Most companies already have some way to accept payments, but what they don't have is a fully automated AR workflow connected to those payments. Bill360 combines AR automation, payment acceptance, a customer payment portal, automated reconciliation, and accounting system sync into one platform. Instead of using multiple disconnected tools — or chasing payments manually — everything works together. The result is faster collections, less manual work, and a better experience for your customers when they pay.</div>
+  </div>
+
+  <div class="obj-card">
+    <div class="obj-q">"Our customers prefer to pay by credit card."</div>
+    <div class="obj-a">That's actually great news for the platform — card payments generate processing revenue and card-on-file autopay tends to produce the fastest payment behavior we see. Bill360 is built to handle card volume well, including L2/L3 interchange optimization and compliant surcharging where you want to offset processing costs. The goal isn't to move customers away from cards — it's to make sure every payment method, card included, flows through an automated AR workflow instead of landing in someone's inbox.</div>
+  </div>
+
+  <div class="obj-card">
+    <div class="obj-q">"ACH takes longer to settle."</div>
+    <div class="obj-a">Standard ACH typically settles in 1–3 business days, and same-day ACH is increasingly common. For companies on Net 30–60 terms, that window is usually irrelevant — the invoice was already outstanding for weeks before the payment was initiated. And again, our goal isn't to push ACH over cards — it's to make sure whichever method the customer chooses flows automatically into your AR workflow and reconciles back into your accounting system without manual intervention.</div>
+  </div>
+
+  <div class="obj-card">
+    <div class="obj-q">"We're worried about ACH fraud."</div>
+    <div class="obj-a">Bill360 handles bank account verification and tokenization on ACH transactions. For context, credit card chargebacks are actually a more frequent fraud vector in B2B than ACH fraud — and Bill360 handles both. The more important story is that the platform gives you visibility into exactly what was paid, when, and by whom, with a full audit trail. That level of control reduces fraud exposure on every payment method, not just ACH.</div>
+  </div>
+
+  <div class="sec-label">Internal Sales Reminder</div>
+  <div class="card" style="border-left:4px solid var(--green);">
+    <div style="font-size:13px;color:#334155;line-height:1.8;"><strong>The goal is not to replace card payments with ACH.</strong> The goal is to get the prospect onto the Bill360 platform with a fully automated AR workflow, multiple payment options active, and card processing running through our rails — where we capture the interchange revenue and the client captures the efficiency. ACH is a tool in the kit. Cards are a primary revenue driver. The platform is the product.</div>
+  </div>
+</div>
+
+<div id="cc101" class="section content">
+  <div class="page-title">Credit Card Processing 101</div>
+  <div class="page-sub">What every AE needs to know about how card processing works — and why cards are a core part of the Bill360 revenue story.</div>
+
+  <div class="rule-box">
+    <div class="rule-title">Why This Matters for Sales</div>
+    <div class="rule-text">Credit card processing is a primary revenue driver for Bill360. When a client processes cards through our platform, we earn interchange revenue. Understanding how card processing works helps you position it confidently, explain the economics to clients, and recognize when L2/L3 optimization or surcharging creates a compelling ROI story. Push cards. Enable ACH. Let clients choose. Capture the volume either way.</div>
+  </div>
+
+  <div class="sec-label">How a Credit Card Transaction Works</div>
+  <div class="card">
+    <div style="font-size:13px;color:#334155;line-height:1.7;">When a customer pays an invoice by credit card, the payment flows through several parties before money lands in the seller's account. The buyer's card-issuing bank authorizes the charge. The card network (Visa, Mastercard) routes the transaction and sets the rules. A payment processor (Bill360 through Fiserv) handles the actual movement of funds and settlement. The merchant receives the net amount after fees are deducted. Each party takes a slice — and the total of those slices is called the <strong>interchange rate</strong> the merchant pays on every transaction.</div>
+    <div class="analogy-box" style="margin-top:10px;"><div class="analogy-label">The Tollway Analogy</div><div class="analogy-text">Think of a credit card transaction like a package being shipped across the country. The card network is the highway system. The issuing bank is the origin depot that loads the funds. The payment processor is the final-mile driver that delivers them to the merchant's door. Each leg charges a fee. The total of all those fees is what the merchant pays as interchange.</div></div>
+  </div>
+
+  <div class="sec-label">Key Terms Every AE Should Know</div>
+  <div class="card">
+    <table>
+      <tr><th>Term</th><th>What It Means</th><th>Why It Matters in Sales</th></tr>
+      <tr><td><strong>Interchange</strong></td><td>The fee paid by the merchant to the card-issuing bank on each transaction. Set by Visa/Mastercard. Typically 1.5%–3.5%.</td><td>Core cost your client absorbs on every card payment — and where Bill360 earns processing revenue.</td></tr>
+      <tr><td><strong>Effective Rate</strong></td><td>Blended average rate a merchant pays across all card types. Calculated as total card fees divided by total card volume.</td><td>Ask for this in discovery. Most merchants don't know it. Calculating it together is an immediate value-add.</td></tr>
+      <tr><td><strong>Card Network</strong></td><td>Visa, Mastercard, Amex, Discover — govern card usage rules, set interchange schedules, route transactions.</td><td>Each network has different rules for surcharging, L2/L3 data requirements, and chargebacks.</td></tr>
+      <tr><td><strong>Issuing Bank</strong></td><td>The bank that issued the buyer's card (e.g., Chase, Bank of America). Receives the largest portion of interchange.</td><td>This is why card costs are non-negotiable — the issuing bank's cut is fixed by the card network.</td></tr>
+      <tr><td><strong>PayFac</strong></td><td>Payment Facilitator — takes on the risk and compliance of processing on behalf of sub-merchants. Bill360 is a full-risk PayFac.</td><td>We handle underwriting, MID setup, compliance, and risk so clients don't have to.</td></tr>
+      <tr><td><strong>Chargeback</strong></td><td>Buyer disputes a charge; the network forces a reversal back to the merchant.</td><td>Chargebacks are expensive. Bill360's buyer portal and dispute tools reduce their frequency.</td></tr>
+    </table>
+  </div>
+
+  <div class="sec-label">Level 2 and Level 3 Data — The Cost Reduction Tool</div>
+  <div class="card">
+    <div style="font-size:13px;color:#334155;line-height:1.7;">Visa and Mastercard charge different interchange rates depending on how much data accompanies a transaction. A basic payment sends Level 1 data — just the amount. If the seller also submits additional information like a customer code, tax amount, and invoice number (Level 2), or full line-item detail including product codes and quantities (Level 3), the card networks reward that with lower interchange rates. Corporate and purchasing cards — which dominate B2B payments — qualify for significantly better rates when L2/L3 data is present. Most companies never submit this data, meaning they overpay on every corporate card transaction. Bill360 automates L2/L3 data submission so clients capture the lower rates without any manual effort.</div>
+    <div class="analogy-box" style="margin-top:10px;"><div class="analogy-label">The Loyalty Card Analogy</div><div class="analogy-text">L2/L3 is like scanning your loyalty card at checkout — the discount is already available, you just have to show the card. Most businesses never show it. Bill360 shows it on every eligible transaction automatically.</div></div>
+    <div class="green-box" style="margin-top:8px;"><strong>When to bring this up:</strong> Any time a prospect mentions high card processing costs, or when their customers pay with corporate purchasing cards. Ask: "Do you know if your processor is submitting Level 2 and Level 3 data on your B2B transactions?"</div>
+  </div>
+
+  <div class="sec-label">Card-on-File and Autopay — The Collections Accelerator</div>
+  <div class="card">
+    <div style="font-size:13px;color:#334155;line-height:1.7;">Card-on-file autopay is one of the most powerful features in the platform, and it should be highlighted in every demo. When buyers save a card and set up autopay against open invoices, the invoice gets paid the moment it is due — without any follow-up from the AR team. Clients who enable this typically see their fastest-paying customers cluster around card autopay. From a revenue perspective, card-on-file autopay means consistent card volume running through the platform, which drives processing revenue for Bill360. Do not downplay cards in favor of ACH — card autopay is a core part of the value proposition and a meaningful revenue stream.</div>
+  </div>
+
+  <div class="sec-label">Credit Card Objections — Reframed</div>
+
+  <div class="obj-card"><div class="obj-q">"Card processing fees are too expensive."</div><div class="obj-a">That's a fair concern — and it's exactly where Bill360 gives you more control than most solutions. First, we automatically optimize Level 2 and Level 3 interchange data on corporate card transactions, which reduces your effective rate without any effort. Second, our compliant surcharging program lets you pass some or all of the card cost to customers who choose to pay by card — while offering ACH as a no-fee alternative. Rather than eliminating card payments, we help you make them more profitable or cost-neutral depending on your preference.</div></div>
+
+  <div class="obj-card"><div class="obj-q">"We don't want to pay interchange on every transaction."</div><div class="obj-a">Interchange is set by Visa and Mastercard — every merchant who accepts cards pays it, regardless of processor. What you can control is the rate you pay (through L2/L3 optimization), whether you pass the cost to the buyer (through surcharging), and whether you actively offer ACH as an alternative. Bill360 gives you all three levers. Most clients use a combination — optimizing rates on cards while offering ACH where it makes sense — rather than trying to eliminate card acceptance entirely.</div></div>
+
+  <div class="obj-card"><div class="obj-q">"We already have a payment processor."</div><div class="obj-a">Most companies do. The question is whether that processor is connected to your AR workflow. Bill360 is a payment processor that is also an AR automation platform — automated reminders, a customer payment portal, reconciliation back into your accounting system, real-time DSO tracking, and dispute collaboration all come with the processing. Your current processor likely handles the transaction and stops there. Bill360 handles the entire invoice-to-cash cycle around the transaction.</div></div>
+
+  <div class="sec-label">Discovery Questions — Card Processing Angle</div>
+  <div class="card">
+    <table>
+      <tr><th>Question</th><th>What It Surfaces</th></tr>
+      <tr><td>"Do you know your effective card processing rate across all card types?"</td><td>Most don't. Calculating it together is an immediate value-add and anchors the ROI conversation.</td></tr>
+      <tr><td>"Are your customers paying with corporate or purchasing cards?"</td><td>Opens the L2/L3 optimization story — the more corporate card volume, the more savings available.</td></tr>
+      <tr><td>"Do you offer customers the ability to save a card on file for autopay?"</td><td>Surfaces the collections acceleration opportunity — card-on-file autopay is one of the fastest paths to a lower DSO.</td></tr>
+      <tr><td>"Has your team looked at surcharging to offset processing costs?"</td><td>Opens the surcharging conversation. If they're absorbing 2–3% on meaningful card volume, that's a recoverable cost.</td></tr>
+      <tr><td>"Does your current processor submit Level 2 or Level 3 data on B2B transactions?"</td><td>Almost nobody does. A reliable way to demonstrate immediate value on existing card volume.</td></tr>
+    </table>
+  </div>
+
+  <div class="sec-label">What Full-Stack PayFac Means for Clients</div>
+  <div class="card">
+    <div style="font-size:13px;color:#334155;line-height:1.7;">A Payment Facilitator takes on the risk and regulatory responsibility of payment processing on behalf of merchants. Instead of each merchant managing their own direct bank relationship and card network compliance, the PayFac handles it. Bill360 is a full-risk PayFac through Fiserv, which means three things in a sales conversation. First, faster onboarding — clients go live through our underwriting process rather than applying directly to a bank. Second, we control the pricing model, the ACH economics, and the surcharging compliance program, giving us flexibility a reseller does not have. Third, for franchise and multi-entity clients, we can set up and manage separate Merchant IDs for each entity under a single Bill360 account — a significant operational advantage over shared-MID solutions and a strong differentiator when talking to multi-location or franchise prospects.</div>
+  </div>
+</div>
+
+
+<div id="ccb2b" class="section content">
+  <div class="page-title">Credit Card Processing in B2B Industries</div>
+  <div class="page-sub">How a card payment actually flows from invoice to your bank — and where Bill360 sits in that chain as a full-risk PayFac.</div>
+
+  <div class="sec-label">The 6-Step Payment Flow</div>
+  <div class="card" style="padding:0;overflow:hidden;">
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:0;">
+      <!-- Step boxes -->
+      <div style="background:#1E3A5F;padding:16px 12px;text-align:center;border-right:1px solid #0D2035;">
+        <div style="background:#335577;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:13px;margin:0 auto 8px;">1</div>
+        <div style="font-weight:700;color:#fff;font-size:12px;margin-bottom:6px;">Invoice Sent</div>
+        <div style="font-size:11px;color:#BFD9F0;line-height:1.5;">Seller sends invoice via Bill360 portal with an embedded Pay Now link</div>
+      </div>
+      <div style="background:#1E4080;padding:16px 12px;text-align:center;border-right:1px solid #0D2035;">
+        <div style="background:#2D5AA0;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:13px;margin:0 auto 8px;">2</div>
+        <div style="font-weight:700;color:#fff;font-size:12px;margin-bottom:6px;">Buyer Pays by Card</div>
+        <div style="font-size:11px;color:#BFD9F0;line-height:1.5;">Buyer enters card or uses saved card on file; autopay option also available</div>
+      </div>
+      <div style="background:#991B1B;padding:16px 12px;text-align:center;border-right:1px solid #0D2035;">
+        <div style="background:#B91C1C;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:13px;margin:0 auto 8px;">3</div>
+        <div style="font-weight:700;color:#fff;font-size:12px;margin-bottom:6px;">Card Network</div>
+        <div style="font-size:11px;color:#FECACA;line-height:1.5;">Visa / Mastercard routes and validates the transaction in milliseconds</div>
+      </div>
+      <div style="background:#1E40AF;padding:16px 12px;text-align:center;border-right:1px solid #0D2035;">
+        <div style="background:#2D55CC;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:13px;margin:0 auto 8px;">4</div>
+        <div style="font-weight:700;color:#fff;font-size:12px;margin-bottom:6px;">Issuing Bank</div>
+        <div style="font-size:11px;color:#BFDBFE;line-height:1.5;">Buyer's bank (Chase, BofA, etc.) authorizes the charge and guarantees funds</div>
+      </div>
+      <div style="background:#166534;padding:16px 12px;text-align:center;border-right:1px solid #0D2035;">
+        <div style="background:#157347;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:13px;margin:0 auto 8px;">5</div>
+        <div style="font-weight:700;color:#fff;font-size:12px;margin-bottom:6px;">Bill360 (Fiserv)</div>
+        <div style="font-size:11px;color:#BBF7D0;line-height:1.5;">Full-risk PayFac processes, settles, and auto-reconciles back to the ERP</div>
+      </div>
+      <div style="background:#14532D;padding:16px 12px;text-align:center;">
+        <div style="background:#166534;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:13px;margin:0 auto 8px;">6</div>
+        <div style="font-weight:700;color:#fff;font-size:12px;margin-bottom:6px;">Seller Receives</div>
+        <div style="font-size:11px;color:#A7F3D0;line-height:1.5;">Net funds deposited to seller's bank account after interchange is deducted</div>
+      </div>
+    </div>
+    <div style="background:#E0F2FE;padding:8px 14px;font-size:12px;color:#0369A1;">
+      <strong>Interchange fee split:</strong> Issuing Bank ~75–80% &nbsp;|&nbsp; Card Network ~5% &nbsp;|&nbsp; Acquirer/Processor (Bill360 via Fiserv) ~15–20% &nbsp;|&nbsp; Typical B2B commercial card rate: 1.8%–3.5%
+    </div>
+  </div>
+
+  <div class="analogy-box">
+    <div class="analogy-label">The Tollway Analogy — How to Explain This to a Prospect</div>
+    <div class="analogy-text">Think of a card transaction like a package being shipped cross-country. The card network is the highway system — it sets the routes and the rules. The issuing bank is the origin depot that loads the package (the funds). Bill360 through Fiserv is the final-mile delivery driver who gets the package to the seller's door and then logs it back into their ERP automatically. Each leg of that journey charges a fee. The total of those fees is the interchange rate the merchant pays.</div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card" style="border-top:3px solid var(--green);">
+      <div class="card-title">Bill360 Role — Full-Risk PayFac</div>
+      <ul style="list-style:disc;padding-left:15px;font-size:12px;color:#334155;line-height:1.9;margin-top:8px;">
+        <li>Handles entire AR automation layer around every payment</li>
+        <li>Manages MID setup, underwriting, and compliance on behalf of clients</li>
+        <li>Automates reconciliation back into the client's ERP</li>
+        <li>Optimizes L2/L3 interchange data on every eligible transaction</li>
+        <li>Manages compliant surcharging program where applicable</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--navy);">
+      <div class="card-title">What Makes B2B Card Processing Different</div>
+      <ul style="list-style:disc;padding-left:15px;font-size:12px;color:#334155;line-height:1.9;margin-top:8px;">
+        <li>Invoice amounts are much larger — often $5K–$500K+</li>
+        <li>Corporate and purchasing cards dominate the buyer mix</li>
+        <li>L2/L3 data qualification can meaningfully reduce interchange</li>
+        <li>Net 30–90 payment terms mean delayed, complex payment cycles</li>
+        <li>Disputes require invoice-level collaboration, not just a chargeback form</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid #166534;">
+      <div class="card-title">Where Bill360 Captures Revenue</div>
+      <ul style="list-style:disc;padding-left:15px;font-size:12px;color:#334155;line-height:1.9;margin-top:8px;">
+        <li>Interchange share on every card transaction processed</li>
+        <li>Card-on-file autopay drives consistent, predictable card volume</li>
+        <li>L2/L3 optimization improves economics on corporate card transactions</li>
+        <li>Surcharging program generates additional fee revenue</li>
+        <li>Full PayFac model means a direct processor relationship — not a reseller</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec-label">Why Card-on-File Autopay Is a Key Selling Point</div>
+  <div class="card">
+    <div style="font-size:13px;color:#334155;line-height:1.7;">When a buyer saves a card on file and enables autopay, the invoice gets paid automatically on its due date — no reminders, no chasing, no manual follow-up from the AR team. This is one of the fastest behavioral changes clients see after going live on Bill360, and it directly impacts DSO. From a revenue perspective, card-on-file autopay means consistent card volume running through the platform every month. It should be demonstrated in every demo for every prospect — not downplayed in favor of ACH. Card volume is a primary revenue driver for the business.</div>
+  </div>
+
+  <div class="sec-label">Discovery Questions — Card Processing in B2B</div>
+  <div class="card">
+    <table>
+      <tr><th>Question</th><th>What It Opens</th></tr>
+      <tr><td>"Do you know your effective card processing rate today?"</td><td>Anchors the ROI conversation — most don't know it, so calculating it together is an immediate value-add</td></tr>
+      <tr><td>"Are most of your customers paying with corporate or purchasing cards?"</td><td>Opens the L2/L3 optimization story — corporate card volume is where the savings live</td></tr>
+      <tr><td>"Do your customers currently have the ability to save a card on file and set up autopay?"</td><td>Surfaces the collections acceleration opportunity — card autopay is the fastest path to lower DSO</td></tr>
+      <tr><td>"How are you currently handling card disputes or chargebacks?"</td><td>Surfaces the pain of manual dispute management — Bill360's buyer portal is a direct solution</td></tr>
+      <tr><td>"Has your team looked at surcharging to offset processing costs on larger invoices?"</td><td>Opens the surcharging conversation — a recoverable cost for clients absorbing 2–3% on large B2B card volume</td></tr>
+    </table>
+  </div>
+</div>
+
+
+<div id="erp101" class="section content">
+  <div class="page-title">ERP Education</div>
+  <div class="page-sub">What is an ERP, how do they differ, and what does Bill360 connect to? Understanding ERP context makes you a sharper seller and a more credible presence in every discovery call.</div>
+
+  <div class="card" style="border-left:4px solid var(--green);">
+    <div class="card-title">What Is an ERP?</div>
+    <div style="font-size:13px;color:#334155;line-height:1.7;margin-top:8px;">ERP stands for Enterprise Resource Planning. At its core, an ERP is the central nervous system of a business — it is the software that connects and manages the key operational processes of a company in one integrated system. Finance and accounting, inventory, purchasing, order management, manufacturing, HR, and reporting all flow through the ERP. Think of it like the electrical panel in a building: every department plugs into it, and nothing works correctly without it. When a company talks about "their system," they almost always mean their ERP.<br><br>For Bill360, the ERP is the starting point and the ending point of every transaction. The invoice originates in the ERP. The payment reconciles back into the ERP. Bill360 sits in the middle — automating everything that happens between those two events without ever touching or replacing the ERP itself.</div>
+    <div class="analogy-box" style="margin-top:12px;"><div class="analogy-label">The Electrical Panel Analogy</div><div class="analogy-text">An ERP is like the electrical panel in a building. Every department (finance, operations, inventory, HR) is a circuit that plugs into it. The panel does not do the work of any individual room — but without it, nothing in the building functions reliably. Bill360 is a smart appliance that plugs into the panel and does one very specific job extremely well: getting invoices paid and the money accounted for automatically.</div></div>
+  </div>
+
+  <div class="sec-label">Cloud vs. Hybrid vs. On-Premise — The Three Deployment Models</div>
+  <div class="grid-3">
+    <div class="card" style="border-top:3px solid var(--green);">
+      <div class="card-title">Cloud ERP (SaaS)</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">Hosted entirely by the vendor; accessed via browser</div>
+      <ul style="list-style:disc;padding-left:15px;font-size:12px;color:#334155;line-height:1.9;">
+        <li>Vendor handles all updates, maintenance, and infrastructure</li>
+        <li>Lower upfront cost — subscription model</li>
+        <li>Accessible from anywhere; ideal for distributed teams</li>
+        <li>Faster implementation; standardized feature sets</li>
+        <li>Less customization flexibility vs. on-premise</li>
+      </ul>
+      <div class="green-box" style="margin-top:8px;font-size:11px;"><strong>Examples:</strong> NetSuite, Sage Intacct, Acumatica (cloud), Oracle Fusion Cloud, D365 Business Central (cloud), SAP S/4HANA Cloud</div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--yellow);">
+      <div class="card-title">Hybrid ERP</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">Core on-premise; some modules hosted in the cloud</div>
+      <ul style="list-style:disc;padding-left:15px;font-size:12px;color:#334155;line-height:1.9;">
+        <li>Gives companies flexibility to keep sensitive data on-premise</li>
+        <li>Cloud modules for CRM, HR, or reporting; core financials on-site</li>
+        <li>Often seen in larger enterprises migrating gradually to cloud</li>
+        <li>More complex integration requirements for AR platforms</li>
+        <li>Common in regulated industries (healthcare, government)</li>
+      </ul>
+      <div class="warn-box" style="margin-top:8px;font-size:11px;"><strong>Examples:</strong> SAP S/4HANA (hybrid deployment), Oracle EBS moving toward Cloud, Microsoft D365 (mixed deployments), Sage 300 in transition</div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--coral);">
+      <div class="card-title">On-Premise ERP</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">Installed and run on the company's own servers</div>
+      <ul style="list-style:disc;padding-left:15px;font-size:12px;color:#334155;line-height:1.9;">
+        <li>Company owns the license and manages their own infrastructure</li>
+        <li>Maximum customization — deeply tailored to business processes</li>
+        <li>Higher upfront cost; internal IT team required to maintain</li>
+        <li>Updates require planned implementation projects</li>
+        <li>Integration with AR platforms often requires middleware (SnapPay)</li>
+      </ul>
+      <div style="background:#fee2e2;border:1px solid #fecaca;border-radius:8px;padding:8px 10px;font-size:11px;color:#991B1B;margin-top:8px;"><strong>Examples:</strong> SAP ECC (legacy on-premise), Oracle EBS, Oracle JD Edwards EnterpriseOne, Microsoft D365 (on-prem), Sage 300 (on-prem)</div>
+    </div>
+  </div>
+
+  <div class="sec-label">ERP Platform Reference — Bill360 Supported Environments</div>
+
+  <!-- SMB ERPs -->
+  <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin:12px 0 6px;">SMB — Fast Deals, Single Decision-Maker</div>
+  <div class="card">
+    <table>
+      <tr><th>ERP</th><th>Deployment</th><th>Best For</th><th>Revenue Range</th><th>Bill360 Notes</th></tr>
+      <tr>
+        <td><strong>QuickBooks (Intuit)</strong></td>
+        <td><span class="tag tag-green">Cloud / Desktop</span></td>
+        <td>Small business accounting; 1–50 employees</td>
+        <td>$500K–$10M</td>
+        <td>Largest installed base; QB Payments fund-hold pain is a primary entry point. Bill360 eliminates QB's AR limitations entirely.</td>
+      </tr>
+      <tr>
+        <td><strong>Xero</strong></td>
+        <td><span class="tag tag-green">Cloud</span></td>
+        <td>Small business; popular in professional services and NZ/AU/UK markets</td>
+        <td>$500K–$5M</td>
+        <td>Clean API; similar pain profile to QuickBooks. Strong with service businesses.</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Mid-Market ERPs -->
+  <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pale);margin:12px 0 6px;">Mid-Market — Multi-Threaded Deals, Map the Buying Committee</div>
+  <div class="card">
+    <table>
+      <tr><th>ERP</th><th>Deployment</th><th>Best For</th><th>Revenue Range</th><th>Bill360 Notes</th></tr>
+      <tr>
+        <td><strong>NetSuite (Oracle)</strong></td>
+        <td><span class="tag tag-green">Cloud</span></td>
+        <td>Multi-entity, high-growth companies; wholesale, tech, services</td>
+        <td>$5M–$500M</td>
+        <td>Bill360's strongest mid-market integration. NewGen + PayTrace often in the deal (see 3rd Parties tab). Multi-subsidiary support is a key differentiator.</td>
+      </tr>
+      <tr>
+        <td><strong>Acumatica</strong></td>
+        <td><span class="tag tag-green">Cloud / On-Premise</span></td>
+        <td>Distribution, manufacturing, construction; growing mid-market</td>
+        <td>$5M–$200M</td>
+        <td>Fast-growing ERP platform. PayTrace (TraceAR) is a common competitive presence in Acumatica deals. Bill360 layers full AR automation on top.</td>
+      </tr>
+      <tr>
+        <td><strong>Sage Intacct</strong></td>
+        <td><span class="tag tag-green">Cloud</span></td>
+        <td>Finance-first; nonprofits, professional services, multi-entity, healthcare</td>
+        <td>$5M–$150M</td>
+        <td>Strong with CFO-led buyers. AICPA-preferred. Deep dimension-based reporting. Bill360 adds the payment layer Intacct lacks natively.</td>
+      </tr>
+      <tr>
+        <td><strong>Sage 300</strong></td>
+        <td><span class="tag tag-amber">On-Premise / Hybrid</span></td>
+        <td>Distribution, construction, mid-market companies upgrading from entry-level</td>
+        <td>$5M–$75M</td>
+        <td>Older installed base often looking at modernization. Strong AR automation story here.</td>
+      </tr>
+      <tr>
+        <td><strong>Microsoft Dynamics 365 Business Central</strong></td>
+        <td><span class="tag tag-green">Cloud / On-Premise</span></td>
+        <td>Microsoft ecosystem companies; SMB to mid-market; strong in retail and distribution</td>
+        <td>$2M–$100M</td>
+        <td>Ideal for companies already deep in Microsoft 365. SnapPay integration is in progress for D365. Strong ARR growth at Microsoft means increasing deal flow here.</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Enterprise ERPs -->
+  <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--yellow);margin:12px 0 6px;">Enterprise — Multi-Stakeholder, Lead with No-Disruption</div>
+  <div class="card">
+    <table>
+      <tr><th>ERP</th><th>Deployment</th><th>Best For</th><th>Revenue Range</th><th>Bill360 Notes</th></tr>
+      <tr>
+        <td><strong>Microsoft Dynamics 365 Finance & Operations</strong></td>
+        <td><span class="tag tag-green">Cloud / On-Premise</span></td>
+        <td>Large enterprise; manufacturing, retail, global operations</td>
+        <td>$100M+</td>
+        <td>Enterprise-tier D365 (separate product from Business Central). IT team involvement is heavy. SnapPay integration in progress.</td>
+      </tr>
+      <tr>
+        <td><strong>SAP S/4HANA</strong></td>
+        <td><span class="tag tag-amber">Cloud / On-Premise / Hybrid</span></td>
+        <td>Large enterprise; manufacturing, chemicals, pharma, utilities, global multi-entity</td>
+        <td>$250M–$50B+</td>
+        <td>Most complex enterprise ERP. SnapPay is the active middleware for SAP integrations (SAP + SnapPay + Bill360). Surcharging available on SAP via SnapPay. Government is a major SnapPay vertical (State of TX, tollways).</td>
+      </tr>
+      <tr>
+        <td><strong>SAP ECC (Legacy)</strong></td>
+        <td><span class="tag tag-coral">On-Premise (Legacy)</span></td>
+        <td>Large enterprises on older SAP installations; many migrating to S/4HANA</td>
+        <td>$250M+</td>
+        <td>Significant installed base still on ECC. Same SnapPay integration path as S/4HANA. Companies migrating from ECC to S/4HANA are often reevaluating their entire payment stack — a strong entry point.</td>
+      </tr>
+      <tr>
+        <td><strong>Oracle EBS (E-Business Suite)</strong></td>
+        <td><span class="tag tag-coral">On-Premise</span></td>
+        <td>Large enterprise; finance, government, utilities, manufacturing</td>
+        <td>$100M–$10B+</td>
+        <td>Oracle's legacy on-premise suite. SnapPay is actively integrated with Oracle EBS and surcharging is available. Companies on EBS often evaluating migration to Oracle Cloud — a two-stage opportunity for Bill360.</td>
+      </tr>
+      <tr>
+        <td><strong>Oracle Fusion Cloud (Oracle Cloud ERP)</strong></td>
+        <td><span class="tag tag-green">Cloud</span></td>
+        <td>Large enterprise; the modern Oracle cloud replacement for EBS</td>
+        <td>$100M–$10B+</td>
+        <td>SnapPay integration is active. Growing Oracle Cloud install base as companies migrate off EBS. Surcharging availability on Oracle Cloud is TBD — confirm with solutions team.</td>
+      </tr>
+      <tr>
+        <td><strong>Oracle JD Edwards EnterpriseOne</strong></td>
+        <td><span class="tag tag-amber">On-Premise / Hybrid</span></td>
+        <td>Manufacturing, distribution, construction, asset-intensive industries</td>
+        <td>$50M–$2B</td>
+        <td>Distinct Oracle product from EBS and Fusion — a different buying center and IT team. Common in distribution and manufacturing. Deals likely involve a gateway layer; confirm in discovery.</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Additional ERPs -->
+  <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:12px 0 6px;">Additional ERP Platforms — Know the Name, Know the Conversation</div>
+  <div class="card">
+    <table>
+      <tr><th>ERP</th><th>Deployment</th><th>Profile</th><th>Bill360 Status</th></tr>
+      <tr><td><strong>Epicor Kinetic / Prophet 21</strong></td><td><span class="tag tag-amber">Cloud / On-Premise</span></td><td>Distribution and manufacturing specialist; deep P21 penetration in wholesale distribution</td><td>Confirm integration with solutions team</td></tr>
+      <tr><td><strong>Infor CloudSuite</strong></td><td><span class="tag tag-green">Cloud</span></td><td>Industry-specific ERP for distribution, healthcare, fashion, and manufacturing; hosted on AWS</td><td>Confirm integration with solutions team</td></tr>
+      <tr><td><strong>Sage X3</strong></td><td><span class="tag tag-amber">Cloud / On-Premise</span></td><td>Mid-market distribution and manufacturing; strong in Europe; simpler than Sage Intacct</td><td>Confirm integration with solutions team</td></tr>
+      <tr><td><strong>Microsoft Dynamics GP (Great Plains)</strong></td><td><span class="tag tag-coral">On-Premise (Legacy)</span></td><td>Older Microsoft ERP with large installed base; many clients evaluating migration to D365 BC</td><td>Legacy platform; verify scope with solutions team</td></tr>
+      <tr><td><strong>Workday Financial Management</strong></td><td><span class="tag tag-green">Cloud</span></td><td>Enterprise finance and HR; popular in professional services, healthcare, education</td><td>SnapPay integration in progress</td></tr>
+      <tr><td><strong>NetSuite SuiteCommerce / Suite Billing</strong></td><td><span class="tag tag-green">Cloud</span></td><td>NetSuite extensions for e-commerce and subscription billing — same NetSuite integration applies</td><td>Same as NetSuite — NewGen + PayTrace often in deal</td></tr>
+    </table>
+  </div>
+
+  <div class="sec-label">ERP Discovery Questions</div>
+  <div class="card">
+    <table>
+      <tr><th>Question</th><th>Why It Matters</th></tr>
+      <tr><td>"What ERP are you running today, and are you on the cloud version or on-premise?"</td><td>Determines the integration path, whether a gateway is likely in the deal, and whether IT complexity is a factor</td></tr>
+      <tr><td>"How long have you been on [ERP]? Any migration or upgrade plans in the next 12–18 months?"</td><td>Migrations are the best entry point — companies reevaluating their stack are open to changing the payment layer too</td></tr>
+      <tr><td>"Do payments reconcile automatically back into [ERP], or is that still a manual process?"</td><td>The most important discovery question for Bill360 — if it's manual, that's the primary pain</td></tr>
+      <tr><td>"Do you use any payment gateway or middleware today — SnapPay, Payfabric, PayTrace?"</td><td>Surfaces 3rd party partners early — critical to know before demo day, not during the call</td></tr>
+      <tr><td>"Who manages the ERP relationship internally — IT, Finance, or a dedicated ERP admin?"</td><td>Tells you who the integration gatekeeper is and how to navigate the buying committee</td></tr>
+    </table>
+  </div>
+
+  <div class="warn-box"><strong>Sales note:</strong> When in doubt about a specific ERP integration, do not guess in front of the prospect. Say "let me confirm the exact integration path with our solutions team and get back to you today" — then actually do it. Overconfidence about an unsupported ERP is a fast way to lose credibility with a technical buyer.</div>
+</div>
+
+</body>
+</html>
